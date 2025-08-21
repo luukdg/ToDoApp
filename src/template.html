@@ -6,6 +6,53 @@
     <title>Document</title>
   </head>
   <body>
-    HELLO
+    <div class="header">
+      <div>
+        <img id="hamburger" src="./img/SVG/menu1.svg" alt="menu" />
+        <h1>Taakie</h1>
+      </div>
+      <div>
+        <p>Your buddy for getting things done</p>
+        <img src="./img/logo.jpg" alt="picture of logo" />
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="menu-bar">
+        <div class="home">
+          <h3>Tasks</h3>
+          <div id="today">Today</div>
+          <div id="week">Next 7 days</div>
+          <div id="all-tasks">All Tasks</div>
+        </div>
+        <div class="projects">
+          <h3>Projects</h3>
+          <div id="add-project">Add Project</div>
+        </div>
+      </div>
+      <div class="content">
+        <div id="todo-ticket">
+            <div class="left-side">
+              <input
+                type="checkbox"
+                id="checkbox"
+                name="completionCheckBox"
+                value="checkbox"
+              />
+              <div class="info-wrapper">
+                <div id="title">Cleaning house</div>
+                <div id="description">Vacuum cleaning, bathroom, kitchen, toilet.</div>
+              </div>
+            </div>
+            <div class="right-side">
+              <div id="priority">Priority: high</div>
+              <div id="date">August 21</div>
+              <div class="editButton">edit</div>
+              <div class="deletebutton">delete</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

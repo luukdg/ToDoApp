@@ -1,0 +1,49 @@
+/* Header styles */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  padding: 0px 20px;
+  background-color: white;
+  box-shadow: 0 1px 10px -4px gray;
+}
+
+.header > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header > div:last-of-type {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.header > div > p {
+  font-size: clamp(0.5rem, 2vw, 1rem);
+  text-align: end;
+}
+
+.header > div > img {
+  height: clamp(50px, 10vw, 80px);
+  width: auto;
+}
+
+#hamburger {
+  height: 40px;
+  padding: 10px;
+}
+
+#hamburger:hover {
+  transform: scale(1.1);
+  border-radius: 4px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.header > div > h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+}

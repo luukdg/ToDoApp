@@ -1,0 +1,50 @@
+.menu-bar {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0px;
+  background-color: var(--menu-bar-color);
+  box-shadow: 0 1px 10px -4px gray;
+  height: calc(100vh - 100px);
+}
+
+@media (max-width: 768px) {
+  .menu-bar {
+    height: 100%;
+  }
+}
+
+.home {
+  margin-bottom: 1rem;
+}
+
+#today,
+#week,
+#all-tasks,
+#add-project {
+  font-size: 1.2rem;
+}
+
+.home > h3,
+.projects > h3 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#today,
+#week,
+#all-tasks,
+#add-project,
+.home > h3,
+.projects > h3 {
+  padding: 0px 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#today:hover,
+#week:hover,
+#all-tasks:hover,
+#add-project:hover {
+  background-color: var(--menu-hover-color);
+  cursor: pointer;
+}

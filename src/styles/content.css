@@ -1,0 +1,25 @@
+.content {
+  margin: 30px;
+}
+
+#todo-ticket {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--menu-bar-color);
+  padding: 10px 10px;
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  gap: 1rem;
+}
+
+#title {
+  font-size: 1rem;
+}
+
+#description {
+  font-size: 0.7rem;
+}

@@ -7,6 +7,7 @@ export default class createTicket {
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
+    this.status = "pending";
   }
 
   // assign date?

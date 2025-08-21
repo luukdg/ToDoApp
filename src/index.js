@@ -1,13 +1,16 @@
 import "./styles/main.css";
-import createTicket from "./components/createTicket";
+import createTicket from "./components/createTicket.js";
 import ticketCollection from "./components/assignTicket.js";
-import changePriority from "./components/changePriority.js";
+import changeTicket from "./components/changeTicket.js";
+import "./styles/menu-bar.css";
+import "./styles/header.css";
+import "./styles/content.css";
 
 // Basic array for storing the tickets
 const allTickets = new ticketCollection();
 console.log(allTickets);
 
-const priorityFunction = new changePriority();
+const ticket = new changeTicket();
 
 // Creating a ticket #1
 let newTicket = new createTicket("Bug", "Fix issue", "2025-08-25", "High");
@@ -26,7 +29,9 @@ allTickets.add(newTicket);
 console.log(allTickets);
 
 // Change priority of a ticket
-priorityFunction.setToHigh(allTickets, 2);
+ticket.setToHigh(allTickets, 2);
 // prioChange.setToHigh(allTickets, 2);
-// console.log(allTickets);
-// change in file
+console.log(allTickets);
+
+ticket.setToComplete(allTickets, 2);
+console.log(allTickets);
