@@ -29,30 +29,61 @@
           <h3>Projects</h3>
           <div id="add-project">Add Project</div>
         </div>
+        <div id="add-todo-button">Add +</div>
       </div>
       <div class="content">
         <div id="todo-ticket">
-            <div class="left-side">
-              <input
-                type="checkbox"
-                id="checkbox"
-                name="completionCheckBox"
-                value="checkbox"
-              />
-              <div class="info-wrapper">
-                <div id="title">Cleaning house</div>
-                <div id="description">Vacuum cleaning, bathroom, kitchen, toilet.</div>
+          <div class="left-side">
+            <input
+              type="checkbox"
+              id="checkbox"
+              name="completionCheckBox"
+              value="checkbox"
+            />
+            <div class="info-wrapper">
+              <div id="title">Cleaning house</div>
+              <div id="description">
+                Vacuum cleaning, bathroom, kitchen, toilet.
               </div>
             </div>
-            <div class="right-side">
-              <div id="priority">Priority: high</div>
-              <div id="date">August 21</div>
-              <div class="editButton">edit</div>
-              <div class="deletebutton">delete</div>
-            </div>
+          </div>
+          <div class="right-side">
+            <div id="priority">Priority: high</div>
+            <div id="date">August 21</div>
+            <div class="editButton">edit</div>
+            <div class="deletebutton">delete</div>
           </div>
         </div>
       </div>
     </div>
+
+    <form class="add-book-popup">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <input
+          type="text"
+          name="task"
+          placeholder="Your task"
+          id="title"
+          required
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="details..."
+          id="author"
+        />
+        <label for="priority">Task priority:</label>
+        <select name="priority" id="priority">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <input type="date" name="date" id="date" />
+        <button id="submit" type="submit">Submit</button>
+        <button id="cancel" type="button">Cancel</button>
+      </div>
+    </form>
   </body>
 </html>

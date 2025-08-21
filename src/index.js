@@ -2,9 +2,11 @@ import "./styles/main.css";
 import createTicket from "./components/createTicket.js";
 import ticketCollection from "./components/assignTicket.js";
 import changeTicket from "./components/changeTicket.js";
+import DomFunctions from "./dom/buttonInteractions.js";
 import "./styles/menu-bar.css";
 import "./styles/header.css";
 import "./styles/content.css";
+import "./styles/form-popup.css";
 
 // Basic array for storing the tickets
 const allTickets = new ticketCollection();
@@ -35,3 +37,8 @@ console.log(allTickets);
 
 ticket.setToComplete(allTickets, 2);
 console.log(allTickets);
+
+// Button interactions
+const dom = new DomFunctions();
+dom.addTodo();
+dom.addSubmit();

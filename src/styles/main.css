@@ -3,6 +3,11 @@
   --menu-bar-color: #dedede;
   --bg: #e8e8e8;
   --menu-hover-color: #d0d0d0;
+  --color-rose: #ef476f;
+  --color-sun: #ffd166;
+  --color-mint: #06d6a0;
+  --color-sky: #118ab2;
+  --color-ink: #073b4c;
 }
 * {
   box-sizing: border-box;
