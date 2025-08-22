@@ -35,13 +35,6 @@ export default class DomFunctions {
     });
   }
 
-  // Doesn't work yet
-  deleteButton() {
-    this.elements.delete?.addEventListener("click", () => {
-      console.log("works!");
-    });
-  }
-
   // Submit a todo ticket
   addSubmit() {
     this.elements.submit?.addEventListener("click", (e) => {
@@ -87,13 +80,30 @@ export default class DomFunctions {
       if (e.target.classList.contains("delete-button")) {
         const toDoTicket = e.target.closest(".ticket-wrapper");
         if (toDoTicket) {
-          const objectIDd = toDoTicket.id;
+          const objectID = toDoTicket.id;
+
+          // Remove from Array
+          const change = new changeTicket();
+          change.removeTicket(allTickets, objectID);
+
+          // Remove from DOM
+          toDoTicket.remove();
+        }
+      }
+    });
+  }
+
+  changeInCheckbox() {
+    this.elements.content?.addEventListener("change", (e) => {
+      if (e.target.id === "checkbox") {
+        const toDoTicket = e.target.closest(".ticket-wrapper");
+        if (toDoTicket) {
+          const objectID = toDoTicket.id;
 
           const change = new changeTicket();
-          change.removeTicket(allTickets, objectIDd);
-          console.log(allTickets);
+          change.changePriority(allTickets, objectID);
 
-          toDoTicket.remove();
+          console.log(allTickets);
         }
       }
     });

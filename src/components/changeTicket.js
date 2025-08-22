@@ -22,18 +22,16 @@ export default class changeTicket {
   }
 
   // Changing completion of ticket
-  setToComplete(allTickets, objectID) {
+  changePriority(allTickets, objectID) {
     const ticket = allTickets.tickets.find(
       (type) => type.ticketCounter === objectID
     );
-    ticket.status = "complete";
-  }
 
-  setToPending(allTickets, objectID) {
-    const ticket = allTickets.tickets.find(
-      (type) => type.ticketCounter === objectID
-    );
-    ticket.status = "pending";
+    if ((ticket.status = "complete")) {
+      ticket.status = "pending";
+    } else {
+      ticket.status = "complete";
+    }
   }
 
   removeTicket(allTickets, objectID) {

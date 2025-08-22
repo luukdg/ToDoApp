@@ -17,17 +17,14 @@ const dom = new DomFunctions();
 dom.addTodoButton();
 dom.closeButton();
 dom.addSubmit();
-dom.deleteButton();
 dom.changeInDom();
+dom.changeInCheckbox();
 
 // Basic array for storing the tickets
 export const allTickets = new ticketCollection();
 
 // Creating a ticket #1
 let newTicket = new createTicket("Bug", "Fix issue", "2025-08-25", "High");
-console.log(newTicket);
-
-// Adding ticket to array #1
 allTickets.add(newTicket);
 console.log(allTickets);
 
@@ -39,11 +36,6 @@ newTicket = new createTicket(
   "Medium"
 );
 allTickets.add(newTicket);
-console.log(newTicket);
-
-// Adding ticket to array #2
-allTickets.add(newTicket);
-console.log(allTickets);
 
 // Sort the tickets by date
 const sorter = new sortArray();
