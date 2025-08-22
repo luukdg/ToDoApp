@@ -2,6 +2,8 @@
 import createTicket from "../components/createTicket";
 import { allTickets } from "../index.js";
 import popUpWindow from "./popUpWindow.js";
+import addTicketToDom from "./addTicketToDom.js";
+import sortArray from "../components/sortArray.js";
 
 export default class DomFunctions {
   constructor() {
@@ -52,6 +54,14 @@ export default class DomFunctions {
       // Pushing the object into the general array
       allTickets.add(ticket);
       console.log(allTickets);
+
+      // Sort the tickets by date
+      const sorter = new sortArray();
+      sorter.sortByDate();
+
+      // Add to the dom
+      const loopOverTickets = new addTicketToDom();
+      loopOverTickets.updateDom();
 
       // Closing the popup
       const popup = new popUpWindow();

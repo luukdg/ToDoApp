@@ -1,12 +1,16 @@
 import "./styles/main.css";
-import createTicket from "./components/createTicket.js";
-import ticketCollection from "./components/assignTicket.js";
-import changeTicket from "./components/changeTicket.js";
-import DomFunctions from "./dom/buttonInteractions.js";
 import "./styles/menu-bar.css";
 import "./styles/header.css";
 import "./styles/content.css";
 import "./styles/form-popup.css";
+
+import createTicket from "./components/createTicket.js";
+import ticketCollection from "./components/assignTicket.js";
+import changeTicket from "./components/changeTicket.js";
+import sortArray from "./components/sortArray.js";
+
+import DomFunctions from "./dom/buttonInteractions.js";
+import addTicketToDom from "./dom/addTicketToDom.js";
 
 // Activate button interactions
 const dom = new DomFunctions();
@@ -16,30 +20,27 @@ dom.addSubmit();
 
 // Basic array for storing the tickets
 export const allTickets = new ticketCollection();
+
+// Creating a ticket #1
+let newTicket = new createTicket("Bug", "Fix issue", "2025-08-25", "High");
+console.log(newTicket);
+
+// Adding ticket to array #1
+allTickets.add(newTicket);
 console.log(allTickets);
 
-// const ticket = new changeTicket();
+// Creating a ticket #2
+newTicket = new createTicket("Bug", "Damage", "2025-02-21", "Low");
+console.log(newTicket);
 
-// // Creating a ticket #1
-// let newTicket = new createTicket("Bug", "Fix issue", "2025-08-25", "High");
-// console.log(newTicket);
+// Adding ticket to array #2
+allTickets.add(newTicket);
+console.log(allTickets);
 
-// // Adding ticket to array #1
-// allTickets.add(newTicket);
-// console.log(allTickets);
+// Sort the tickets by date
+const sorter = new sortArray();
+sorter.sortByDate();
 
-// // Creating a ticket #2
-// newTicket = new createTicket("Bug", "Damage", "2025-02-21", "Low");
-// console.log(newTicket);
-
-// // Adding ticket to array #1
-// allTickets.add(newTicket);
-// console.log(allTickets);
-
-// // Change priority of a ticket
-// ticket.setToHigh(allTickets, 2);
-// // prioChange.setToHigh(allTickets, 2);
-// console.log(allTickets);
-
-// ticket.setToComplete(allTickets, 2);
-// console.log(allTickets);
+// adds the tickets to the DOM
+const loopOverTickets = new addTicketToDom();
+loopOverTickets.updateDom();

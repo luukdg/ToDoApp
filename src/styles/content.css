@@ -2,12 +2,13 @@
   margin: 30px;
 }
 
-#todo-ticket {
+.ticket-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-mint);
   padding: 10px 10px;
+  background-color: var(--color-mint);
+  margin-bottom: 10px;
 }
 
 .left-side,
