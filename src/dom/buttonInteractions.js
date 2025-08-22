@@ -1,7 +1,7 @@
 // <--- Add todo Button ---> //
 import createTicket from "../components/createTicket";
-
-const newTicket = new createTicket();
+import { allTickets } from "../index.js";
+import popUpWindow from "./popUpWindow.js";
 
 export default class DomFunctions {
   constructor() {
@@ -9,25 +9,53 @@ export default class DomFunctions {
       addTodo: document.getElementById("add-todo-button"),
       submit: document.getElementById("submit"),
       toDoForm: document.getElementsByClassName("add-book-popup"),
+      close: document.getElementById("cancel"),
     };
   }
 
-  addTodo() {
+  // Add todo button
+  addTodoButton() {
     this.elements.addTodo?.addEventListener("click", () => {
-      alert("added");
+      const popup = new popUpWindow();
+      popup.open();
+      console.log("open");
+    });
+  }
+
+  closeButton() {
+    this.elements.close?.addEventListener("click", () => {
+      const popup = new popUpWindow();
+      popup.close();
+      console.log("close");
     });
   }
 
   // Submit a todo ticket
   addSubmit() {
-    this.elements.submit?.addEventListener("click", () => {});
-    const toDoInput = this.toDoForm;
+    this.elements.submit?.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    const title = toDoInput.querySelector("title").value.trim();
-    const description = toDoInput.querySelector("title").value.trim();
-    const priority = toDoInput.querySelector("priority");
-    const date = toDoInput.querySelector("date");
+      // Query selector of the form
+      const form = document.querySelector(".add-book-popup");
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
 
-    newTicket(title, description, priority, date);
+      // Separating the data in different variables
+      const title = data.title;
+      const description = data.description;
+      const priority = data.priority;
+      const date = data.date;
+
+      // Creating an object
+      const ticket = new createTicket(title, description, date, priority);
+
+      // Pushing the object into the general array
+      allTickets.add(ticket);
+      console.log(allTickets);
+
+      // Closing the popup
+      const popup = new popUpWindow();
+      popup.close();
+    });
   }
 }
