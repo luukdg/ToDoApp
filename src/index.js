@@ -17,6 +17,8 @@ const dom = new DomFunctions();
 dom.addTodoButton();
 dom.closeButton();
 dom.addSubmit();
+dom.deleteButton();
+dom.changeInDom();
 
 // Basic array for storing the tickets
 export const allTickets = new ticketCollection();
@@ -30,7 +32,13 @@ allTickets.add(newTicket);
 console.log(allTickets);
 
 // Creating a ticket #2
-newTicket = new createTicket("Bug", "Damage", "2025-02-21", "Low");
+newTicket = new createTicket(
+  "Feature",
+  "Add dark mode",
+  "2025-03-15",
+  "Medium"
+);
+allTickets.add(newTicket);
 console.log(newTicket);
 
 // Adding ticket to array #2

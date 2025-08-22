@@ -26,8 +26,8 @@
 }
 
 #date:hover,
-.deletebutton:hover,
-.editButton:hover {
+.delete-button:hover,
+.edit-button:hover {
   cursor: pointer;
   background-color: grey;
 }

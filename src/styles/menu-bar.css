@@ -4,7 +4,7 @@
   padding: 30px 0px;
   background-color: var(--menu-bar-color);
   box-shadow: 0 1px 10px -4px gray;
-  height: calc(100vh - 100px);
+  min-height: calc(100vh - 100px);
   position: relative;
 }
 

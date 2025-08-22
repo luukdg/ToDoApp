@@ -4,6 +4,7 @@ import { allTickets } from "../index.js";
 import popUpWindow from "./popUpWindow.js";
 import addTicketToDom from "./addTicketToDom.js";
 import sortArray from "../components/sortArray.js";
+import changeTicket from "../components/changeTicket.js";
 
 export default class DomFunctions {
   constructor() {
@@ -12,6 +13,8 @@ export default class DomFunctions {
       submit: document.getElementById("submit"),
       toDoForm: document.getElementsByClassName("add-book-popup"),
       close: document.getElementById("cancel"),
+      delete: document.querySelector(".deleteButton"),
+      content: document.querySelector(".content"),
     };
   }
 
@@ -29,6 +32,13 @@ export default class DomFunctions {
       const popup = new popUpWindow();
       popup.close();
       console.log("close");
+    });
+  }
+
+  // Doesn't work yet
+  deleteButton() {
+    this.elements.delete?.addEventListener("click", () => {
+      console.log("works!");
     });
   }
 
@@ -66,6 +76,26 @@ export default class DomFunctions {
       // Closing the popup
       const popup = new popUpWindow();
       popup.close();
+
+      // Removing old form data
+      form.reset();
+    });
+  }
+
+  changeInDom() {
+    this.elements.content?.addEventListener("click", (e) => {
+      if (e.target.classList.contains("delete-button")) {
+        const toDoTicket = e.target.closest(".ticket-wrapper");
+        if (toDoTicket) {
+          const objectIDd = toDoTicket.id;
+
+          const change = new changeTicket();
+          change.removeTicket(allTickets, objectIDd);
+          console.log(allTickets);
+
+          toDoTicket.remove();
+        }
+      }
     });
   }
 }

@@ -35,4 +35,11 @@ export default class changeTicket {
     );
     ticket.status = "pending";
   }
+
+  removeTicket(allTickets, objectID) {
+    allTickets.tickets.splice(
+      allTickets.tickets.findIndex((a) => a.id === objectID),
+      1
+    );
+  }
 }
