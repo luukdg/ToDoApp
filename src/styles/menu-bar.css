@@ -10,7 +10,7 @@
 
 @media (max-width: 768px) {
   .menu-bar {
-    height: 100%;
+    min-height: 100%;
   }
 }
 

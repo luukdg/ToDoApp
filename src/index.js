@@ -7,7 +7,7 @@ import "./styles/form-popup.css";
 import createTicket from "./components/createTicket.js";
 import ticketCollection from "./components/assignTicket.js";
 import changeTicket from "./components/changeTicket.js";
-import sortArray from "./components/sortArray.js";
+import SortArray from "./components/sortArray.js";
 
 import DomFunctions from "./dom/buttonInteractions.js";
 import addTicketToDom from "./dom/addTicketToDom.js";
@@ -21,26 +21,50 @@ dom.delete();
 dom.changeInCheckbox();
 
 // Basic array for storing the tickets
-export const allTickets = new ticketCollection();
+export let allTickets = new ticketCollection();
 
 // Creating a ticket #1
-let newTicket = new createTicket("Bug", "Fix issue", "24-08-2025", "High");
+let newTicket = new createTicket("Bug", "Fix issue", "26-08-2025", "High");
 allTickets.add(newTicket);
-console.log(allTickets);
 
 // Creating a ticket #2
 newTicket = new createTicket(
   "Feature",
   "Add dark mode",
-  "28-08-2025",
+  "24-08-2025",
   "Medium"
 );
 allTickets.add(newTicket);
 
-// Sort the tickets by date
-const sorter = new sortArray();
-sorter.sortByDate();
+// Creating a ticket #3
+newTicket = new createTicket(
+  "Task",
+  "Update documentation",
+  "20-08-2025",
+  "Low"
+);
+allTickets.add(newTicket);
+
+// Creating a ticket #4
+newTicket = new createTicket(
+  "Improvement",
+  "Refactor login module",
+  "22-08-2025",
+  "High"
+);
+allTickets.add(newTicket);
+
+// Creating a ticket #5
+newTicket = new createTicket(
+  "Bug",
+  "Resolve memory leak",
+  "28-08-2025",
+  "Critical"
+);
+allTickets.add(newTicket);
+
+console.log("Tickets:", allTickets);
 
 // adds the tickets to the DOM
 const loopOverTickets = new addTicketToDom();
-loopOverTickets.updateDom(4);
+loopOverTickets.updateDom();
