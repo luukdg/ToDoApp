@@ -75,7 +75,7 @@ export default class DomFunctions {
     });
   }
 
-  changeInDom() {
+  delete() {
     this.elements.content?.addEventListener("click", (e) => {
       if (e.target.classList.contains("delete-button")) {
         const toDoTicket = e.target.closest(".ticket-wrapper");
