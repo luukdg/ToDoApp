@@ -40,7 +40,7 @@ allTickets.add(newTicket);
 newTicket = new createTicket(
   "Task",
   "Update documentation",
-  "20-08-2025",
+  "26-08-2025",
   "Low"
 );
 allTickets.add(newTicket);
@@ -49,7 +49,7 @@ allTickets.add(newTicket);
 newTicket = new createTicket(
   "Improvement",
   "Refactor login module",
-  "22-08-2025",
+  "25-08-2025",
   "High"
 );
 allTickets.add(newTicket);
@@ -58,7 +58,7 @@ allTickets.add(newTicket);
 newTicket = new createTicket(
   "Bug",
   "Resolve memory leak",
-  "28-08-2025",
+  "24-08-2025",
   "Critical"
 );
 allTickets.add(newTicket);
@@ -67,4 +67,4 @@ console.log("Tickets:", allTickets);
 
 // adds the tickets to the DOM
 const loopOverTickets = new addTicketToDom();
-loopOverTickets.updateDom();
+loopOverTickets.updateDom(0);

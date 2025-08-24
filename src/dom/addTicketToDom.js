@@ -1,6 +1,6 @@
 // Function which loops through the object and updates the DOM accordingly.
 import { allTickets } from "../index.js";
-import { format, addDays, parse, fromUnixTime } from "date-fns";
+import { startOfDay, addDays, parse } from "date-fns";
 import SortArray from "../components/sortArray.js";
 
 export default class addTicketToDom {
@@ -8,26 +8,24 @@ export default class addTicketToDom {
     let filterByDays;
 
     // FIX THIS, all three scenario's must work
-    if (!filterSelection) {
+    if (!filterSelection === undefined || filterSelection === null) {
       filterByDays = allTickets.tickets;
     } else {
-      const todayDate = new Date();
-      const dateInput = addDays(todayDate, filterSelection);
+      const todayDate = startOfDay(new Date());
+      const untilDate = startOfDay(addDays(todayDate, filterSelection));
 
-      const fromDate = format(todayDate, "dd-MM-yyyy");
-      const untilDate = format(dateInput, "dd-MM-yyyy");
+      console.log("From:", todayDate, "Until:", untilDate);
 
-      console.log("From:", fromDate, "Until:", untilDate);
+      filterByDays = allTickets.tickets.filter((ticket) => {
+        const ticketDate = startOfDay(
+          parse(ticket.dueDate, "dd-MM-yyyy", new Date())
+        );
 
-      if (filterSelection === 0) {
-        filterByDays = allTickets.tickets.filter((ticket) => {
-          return ticket.dueDate == fromDate;
-        });
-      } else {
-        filterByDays = allTickets.tickets.filter((ticket) => {
-          return ticket.dueDate >= fromDate && ticket.dueDate <= untilDate;
-        });
-      }
+        if (filterSelection === 0) {
+          return ticketDate.getTime() === todayDate.getTime();
+        }
+        return ticketDate >= todayDate && ticketDate <= untilDate;
+      });
     }
 
     // Sort the tickets by date
