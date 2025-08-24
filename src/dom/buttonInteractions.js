@@ -95,15 +95,21 @@ export default class DomFunctions {
 
   changeInCheckbox() {
     this.elements.content?.addEventListener("change", (e) => {
+      // Find the right ticket in the DOM
       if (e.target.id === "checkbox") {
         const toDoTicket = e.target.closest(".ticket-wrapper");
         if (toDoTicket) {
           const objectID = toDoTicket.id;
 
+          // Change the status in the object
           const change = new changeTicket();
           change.changePriority(allTickets, objectID);
 
-          console.log(allTickets);
+          if (!toDoTicket.style.textDecoration) {
+            toDoTicket.style.textDecoration = "line-through";
+          } else {
+            toDoTicket.style.textDecoration = "";
+          }
         }
       }
     });

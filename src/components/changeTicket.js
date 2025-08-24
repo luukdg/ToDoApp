@@ -27,13 +27,14 @@ export default class changeTicket {
       (type) => type.ticketCounter === objectID
     );
 
-    if ((ticket.status = "complete")) {
-      ticket.status = "pending";
-    } else {
+    if (ticket.status === "pending") {
       ticket.status = "complete";
+    } else {
+      ticket.status = "pending";
     }
   }
 
+  // Remove ticket
   removeTicket(allTickets, objectID) {
     allTickets.tickets.splice(
       allTickets.tickets.findIndex((a) => a.id === objectID),
