@@ -3,8 +3,10 @@ import createTicket from "../components/createTicket";
 import { allTickets } from "../index.js";
 import popUpWindow from "./popUpWindow.js";
 import addTicketToDom from "./addTicketToDom.js";
-import sortArray from "../components/sortArray.js";
+import SortArray from "../components/sortArray.js";
 import changeTicket from "../components/changeTicket.js";
+import { format } from "date-fns";
+import { setFilter, userTracker } from "./userTracker.js";
 
 export default class DomFunctions {
   constructor() {
@@ -15,6 +17,9 @@ export default class DomFunctions {
       close: document.getElementById("cancel"),
       delete: document.querySelector(".deleteButton"),
       content: document.querySelector(".content"),
+      today: document.getElementById("today"),
+      week: document.getElementById("week"),
+      allTasks: document.getElementById("all-tasks"),
     };
   }
 
@@ -49,22 +54,18 @@ export default class DomFunctions {
       const title = data.title;
       const description = data.description;
       const priority = data.priority;
-      const date = data.date;
+      const date = format(data.date, "dd-MM-yyyy");
 
       // Creating an object
       const ticket = new createTicket(title, description, date, priority);
 
       // Pushing the object into the general array
       allTickets.add(ticket);
-      console.log(allTickets);
-
-      // Sort the tickets by date
-      const sorter = new sortArray();
-      sorter.sortByDate();
+      console.log("new ticket added:", allTickets);
 
       // Add to the dom
       const loopOverTickets = new addTicketToDom();
-      loopOverTickets.updateDom();
+      loopOverTickets.updateDom(userTracker, allTickets);
 
       // Closing the popup
       const popup = new popUpWindow();
@@ -111,6 +112,43 @@ export default class DomFunctions {
             toDoTicket.style.textDecoration = "";
           }
         }
+      }
+    });
+  }
+
+  todayButton() {
+    this.elements.today?.addEventListener("click", () => {
+      const loopOverTickets = new addTicketToDom();
+      loopOverTickets.updateDom(0, allTickets);
+      setFilter(0);
+    });
+  }
+
+  weekButton() {
+    this.elements.week?.addEventListener("click", () => {
+      const loopOverTickets = new addTicketToDom();
+      loopOverTickets.updateDom(7, allTickets);
+      setFilter(7);
+    });
+  }
+
+  allTasksButton() {
+    this.elements.allTasks?.addEventListener("click", () => {
+      const loopOverTickets = new addTicketToDom();
+      loopOverTickets.updateDom("All", allTickets);
+      setFilter("All");
+    });
+  }
+
+  hamburgerButton() {
+    const hamburger = document.getElementById("hamburger");
+
+    hamburger.addEventListener("click", () => {
+      const menu = document.querySelector(".menu-bar");
+      if (menu.style.display === "none") {
+        menu.style.display = "block";
+      } else {
+        menu.style.display = "none";
       }
     });
   }

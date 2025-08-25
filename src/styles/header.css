@@ -34,6 +34,7 @@
 #hamburger {
   height: 40px;
   padding: 10px;
+  color: var(--color-ink);
 }
 
 #hamburger:hover {

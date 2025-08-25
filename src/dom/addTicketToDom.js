@@ -1,20 +1,24 @@
 // Function which loops through the object and updates the DOM accordingly.
-import { allTickets } from "../index.js";
 import { startOfDay, addDays, parse } from "date-fns";
 import SortArray from "../components/sortArray.js";
+import changeColor from "./changePriorityColor.js";
 
 export default class addTicketToDom {
-  updateDom(filterSelection) {
+  updateDom(filterSelection, allTickets) {
+    // Wipes the DOM first
+    const container = document.querySelector(".content");
+    while (container.children.length > 1) {
+      container.removeChild(container.lastChild);
+    }
+
     let filterByDays;
 
-    // FIX THIS, all three scenario's must work
-    if (!filterSelection === undefined || filterSelection === null) {
+    // Filtering by "vandaag", "Komende week" or "Alle taken"
+    if (filterSelection === "All") {
       filterByDays = allTickets.tickets;
     } else {
       const todayDate = startOfDay(new Date());
       const untilDate = startOfDay(addDays(todayDate, filterSelection));
-
-      console.log("From:", todayDate, "Until:", untilDate);
 
       filterByDays = allTickets.tickets.filter((ticket) => {
         const ticketDate = startOfDay(
@@ -56,6 +60,20 @@ export default class addTicketToDom {
         clone.getElementById("date").textContent = dueDate;
         clone.getElementById("priority").textContent = priority;
         clone.getElementById("title").textContent = title;
+
+        const priorityColor = clone.getElementById("priority");
+
+        // Assign the color based on priority
+        if (priorityColor.textContent === "High") {
+          ticketElement.style.borderLeftColor = "#ef476f";
+          priorityColor.style.backgroundColor = "#ef476f";
+        } else if (priorityColor.textContent === "Medium") {
+          ticketElement.style.borderLeftColor = "#ffd166";
+          priorityColor.style.backgroundColor = "#ffd166";
+        } else {
+          ticketElement.style.borderLeftColor = "#06d6a0";
+          priorityColor.style.backgroundColor = "#06d6a0";
+        }
 
         // Link it to the DOM
         container.appendChild(clone);

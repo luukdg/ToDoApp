@@ -7,13 +7,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
-  background-color: var(--color-mint);
+  background-color: white;
   margin-bottom: 10px;
+  border-left: 5px solid transparent;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .left-side,
 .right-side {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -25,9 +28,24 @@
   font-size: 0.7rem;
 }
 
+#date,
+.delete-button,
+.edit-button {
+  transition: all 0.2s ease-in-out;
+}
+
 #date:hover,
 .delete-button:hover,
 .edit-button:hover {
+  scale: 1.1;
   cursor: pointer;
-  background-color: grey;
+}
+
+.right-side > div > img {
+  width: 20px;
+  height: 20px;
+}
+
+.right-side {
+  margin-right: 5px;
 }

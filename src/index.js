@@ -12,6 +12,8 @@ import SortArray from "./components/sortArray.js";
 import DomFunctions from "./dom/buttonInteractions.js";
 import addTicketToDom from "./dom/addTicketToDom.js";
 
+import changeColor from "./dom/changePriorityColor.js";
+
 // Activate button interactions
 const dom = new DomFunctions();
 dom.addTodoButton();
@@ -19,9 +21,16 @@ dom.closeButton();
 dom.addSubmit();
 dom.delete();
 dom.changeInCheckbox();
+dom.todayButton();
+dom.weekButton();
+dom.allTasksButton();
+dom.hamburgerButton();
+
+const domColor = new changeColor();
+domColor.priorityPopUp();
 
 // Basic array for storing the tickets
-export let allTickets = new ticketCollection();
+export const allTickets = new ticketCollection();
 
 // Creating a ticket #1
 let newTicket = new createTicket("Bug", "Fix issue", "26-08-2025", "High");
@@ -31,7 +40,7 @@ allTickets.add(newTicket);
 newTicket = new createTicket(
   "Feature",
   "Add dark mode",
-  "24-08-2025",
+  "30-08-2025",
   "Medium"
 );
 allTickets.add(newTicket);
@@ -59,12 +68,12 @@ newTicket = new createTicket(
   "Bug",
   "Resolve memory leak",
   "24-08-2025",
-  "Critical"
+  "Medium"
 );
 allTickets.add(newTicket);
 
-console.log("Tickets:", allTickets);
+console.log("Tickets when refreshing:", allTickets);
 
 // adds the tickets to the DOM
 const loopOverTickets = new addTicketToDom();
-loopOverTickets.updateDom(0);
+loopOverTickets.updateDom("All", allTickets);

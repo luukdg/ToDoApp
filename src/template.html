@@ -52,8 +52,12 @@
             <div class="right-side">
               <div id="priority">Priority: high</div>
               <div id="date">August 21</div>
-              <div class="edit-button">edit</div>
-              <div class="delete-button">delete</div>
+              <div class="edit-button">
+                <img src="./img/SVG/edit.svg" alt="edit" />
+              </div>
+              <div class="delete-button">
+                <img src="./img/SVG/trash.svg" alt="delete" />
+              </div>
             </div>
           </div>
         </template>
@@ -63,28 +67,35 @@
     <form class="add-book-popup">
       <!-- Modal content -->
       <div class="modal-content">
-        <input
-          type="text"
-          name="title"
-          placeholder="Your task"
-          id="title"
-          required
-        />
-        <input
-          type="text"
-          name="description"
-          placeholder="details..."
-          id="description"
-        />
-        <label for="priority">Task priority:</label>
-        <select name="priority" id="priority">
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
-        <input type="date" name="date" id="date" />
-        <button id="submit" type="button">Submit</button>
-        <button id="cancel" type="button">Cancel</button>
+        <div>
+          <h3>Nieuwe taak</h3>
+          <div>
+            <input
+              type="text"
+              name="title"
+              placeholder="Your task"
+              id="title"
+              required
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="details..."
+              id="description"
+            />
+          </div>
+          <label for="priority">Task priority:</label>
+          <select name="priority" id="priority">
+            <option value="low" data-priority="low">Low</option>
+            <option value="medium" data-priority="medium">Medium</option>
+            <option value="high" data-priority="high">High</option>
+          </select>
+          <input type="date" name="date" id="date" />
+          <div>
+            <button id="submit" type="button">Submit</button>
+            <button id="cancel" type="button">Cancel</button>
+          </div>
+        </div>
       </div>
     </form>
   </body>
