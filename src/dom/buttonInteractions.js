@@ -3,7 +3,7 @@ import createTicket from "../components/createTicket";
 import { allTickets } from "../index.js";
 import popUpWindow from "./popUpWindow.js";
 import addTicketToDom from "./addTicketToDom.js";
-import SortArray from "../components/sortArray.js";
+import changeColor from "./changePriorityColor.js";
 import changeTicket from "../components/changeTicket.js";
 import { format } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
@@ -12,7 +12,7 @@ export default class DomFunctions {
   constructor() {
     this.elements = {
       addTodo: document.getElementById("add-todo-button"),
-      submit: document.getElementById("submit"),
+      firstSubmit: document.getElementById("submit"),
       toDoForm: document.getElementsByClassName("add-book-popup"),
       close: document.getElementById("cancel"),
       delete: document.querySelector(".deleteButton"),
@@ -20,6 +20,7 @@ export default class DomFunctions {
       today: document.getElementById("today"),
       week: document.getElementById("week"),
       allTasks: document.getElementById("all-tasks"),
+      addProject: document.getElementById("add-project"),
     };
   }
 
@@ -32,17 +33,30 @@ export default class DomFunctions {
     });
   }
 
+  addSecondToDoButton() {
+    this.elements.content?.addEventListener("click", (e) => {
+      if (e.target.closest("#add-new-task-button")) {
+        const popup = new popUpWindow();
+        popup.open();
+        console.log("open");
+      }
+    });
+  }
+
   closeButton() {
     this.elements.close?.addEventListener("click", () => {
       const popup = new popUpWindow();
       popup.close();
       console.log("close");
+
+      const form = document.querySelector(".add-book-popup");
+      form.reset();
     });
   }
 
   // Submit a todo ticket
   addSubmit() {
-    this.elements.submit?.addEventListener("click", (e) => {
+    this.elements.firstSubmit?.addEventListener("click", (e) => {
       e.preventDefault();
 
       // Query selector of the form
@@ -76,9 +90,18 @@ export default class DomFunctions {
     });
   }
 
+  edit() {
+    this.elements.content?.addEventListener("click", (e) => {
+      if (e.target.id === "edit") {
+        const popup = new popUpWindow();
+        popup.openEditWindow();
+      }
+    });
+  }
+
   delete() {
     this.elements.content?.addEventListener("click", (e) => {
-      if (e.target.classList.contains("delete-button")) {
+      if (e.target.id === "delete") {
         const toDoTicket = e.target.closest(".ticket-wrapper");
         if (toDoTicket) {
           const objectID = toDoTicket.id;
@@ -89,6 +112,7 @@ export default class DomFunctions {
 
           // Remove from DOM
           toDoTicket.remove();
+          console.log("New list", allTickets);
         }
       }
     });
@@ -118,25 +142,41 @@ export default class DomFunctions {
 
   todayButton() {
     this.elements.today?.addEventListener("click", () => {
+      const filter = 0;
+
       const loopOverTickets = new addTicketToDom();
-      loopOverTickets.updateDom(0, allTickets);
-      setFilter(0);
+      loopOverTickets.updateDom(filter, allTickets);
+      setFilter(filter);
+
+      const menu = new changeColor();
+      menu.checkMenu(filter);
     });
   }
 
   weekButton() {
     this.elements.week?.addEventListener("click", () => {
+      const filter = 7;
+
       const loopOverTickets = new addTicketToDom();
-      loopOverTickets.updateDom(7, allTickets);
-      setFilter(7);
+      loopOverTickets.updateDom(filter, allTickets);
+      setFilter(filter);
+
+      const menu = new changeColor();
+      menu.checkMenu(filter);
     });
   }
 
   allTasksButton() {
     this.elements.allTasks?.addEventListener("click", () => {
+      const filter = "All";
+
       const loopOverTickets = new addTicketToDom();
-      loopOverTickets.updateDom("All", allTickets);
-      setFilter("All");
+      loopOverTickets.updateDom(filter, allTickets);
+      setFilter(filter);
+
+      // Check menu selection background color
+      const menu = new changeColor();
+      menu.checkMenu(filter);
     });
   }
 
@@ -151,5 +191,31 @@ export default class DomFunctions {
         menu.style.display = "none";
       }
     });
+  }
+
+  addProjectButton() {
+    this.elements.addProject?.addEventListener("click", () => {
+      const newProject = document.createElement("div");
+      const inputForm = document.createElement("input");
+
+      const container = document.getElementById("project-wrapper");
+      container.appendChild(newProject);
+      newProject.appendChild(inputForm);
+    });
+  }
+
+  init() {
+    this.addTodoButton();
+    this.closeButton();
+    this.addSubmit();
+    this.delete();
+    this.changeInCheckbox();
+    this.todayButton();
+    this.weekButton();
+    this.allTasksButton();
+    this.hamburgerButton();
+    this.addProjectButton();
+    this.addSecondToDoButton();
+    this.edit();
   }
 }

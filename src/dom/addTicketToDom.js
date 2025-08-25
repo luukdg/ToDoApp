@@ -58,7 +58,10 @@ export default class addTicketToDom {
         // Assign the ticket information to the DOM
         clone.getElementById("description").textContent = description;
         clone.getElementById("date").textContent = dueDate;
-        clone.getElementById("priority").textContent = priority;
+
+        // Make first char with uppercase
+        clone.getElementById("priority").textContent =
+          priority.charAt(0).toUpperCase() + priority.slice(1);
         clone.getElementById("title").textContent = title;
 
         const priorityColor = clone.getElementById("priority");
@@ -79,5 +82,14 @@ export default class addTicketToDom {
         container.appendChild(clone);
       }
     });
+
+    // Button for adding more tickets
+    const newDiv = document.createElement("div");
+    const newButton = document.createElement("h3");
+    newButton.textContent = "Voeg een nieuwe taak toe";
+    newDiv.id = "add-new-task-button";
+
+    container.appendChild(newDiv);
+    newDiv.appendChild(newButton);
   }
 }

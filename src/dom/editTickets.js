@@ -1,0 +1,3 @@
+class editTickets {
+  edit() {}
+}

@@ -1,4 +1,4 @@
-export let userTracker = 1; // 1 could represent the default filter
+export let userTracker = "All";
 
 export function setFilter(filterId) {
   userTracker = filterId;

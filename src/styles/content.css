@@ -34,7 +34,6 @@
   transition: all 0.2s ease-in-out;
 }
 
-#date:hover,
 .delete-button:hover,
 .edit-button:hover {
   scale: 1.1;
@@ -48,4 +47,36 @@
 
 .right-side {
   margin-right: 5px;
+}
+
+.right-side > #priority {
+  text-align: center;
+  width: 80px;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font);
+  color: white;
+}
+
+.content > div:last-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 62px;
+}
+
+#add-new-task-button {
+  color: #c0c0c0;
+  text-align: center;
+  padding: 10px 10px;
+  border: 1px solid var(--menu-hover-color);
+  transition: all 0.2s ease-in-out;
+}
+
+#add-new-task-button:hover {
+  cursor: pointer;
+  color: #a7a7a7;
+  border: 1px solid #a7a7a7;
 }

@@ -4,21 +4,21 @@ export default class changeTicket {
     const ticket = allTickets.tickets.find(
       (type) => type.ticketCounter === objectID
     );
-    ticket.priority = "Low";
+    ticket.priority = "low";
   }
 
   setToMedium(allTickets, objectID) {
     const ticket = allTickets.tickets.find(
       (type) => type.ticketCounter === objectID
     );
-    ticket.priority = "Medium";
+    ticket.priority = "medium";
   }
 
   setToHigh(allTickets, objectID) {
     const ticket = allTickets.tickets.find(
       (type) => type.ticketCounter === objectID
     );
-    ticket.priority = "High";
+    ticket.priority = "high";
   }
 
   // Changing completion of ticket

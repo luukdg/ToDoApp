@@ -16,24 +16,17 @@ import changeColor from "./dom/changePriorityColor.js";
 
 // Activate button interactions
 const dom = new DomFunctions();
-dom.addTodoButton();
-dom.closeButton();
-dom.addSubmit();
-dom.delete();
-dom.changeInCheckbox();
-dom.todayButton();
-dom.weekButton();
-dom.allTasksButton();
-dom.hamburgerButton();
+dom.init();
 
 const domColor = new changeColor();
-domColor.priorityPopUp();
+domColor.init();
+domColor.checkMenu("All");
 
 // Basic array for storing the tickets
 export const allTickets = new ticketCollection();
 
 // Creating a ticket #1
-let newTicket = new createTicket("Bug", "Fix issue", "26-08-2025", "High");
+let newTicket = new createTicket("Bug", "Fix issue", "26-08-2025", "high");
 allTickets.add(newTicket);
 
 // Creating a ticket #2
@@ -41,7 +34,7 @@ newTicket = new createTicket(
   "Feature",
   "Add dark mode",
   "30-08-2025",
-  "Medium"
+  "medium"
 );
 allTickets.add(newTicket);
 
@@ -50,7 +43,7 @@ newTicket = new createTicket(
   "Task",
   "Update documentation",
   "26-08-2025",
-  "Low"
+  "low"
 );
 allTickets.add(newTicket);
 
@@ -59,7 +52,7 @@ newTicket = new createTicket(
   "Improvement",
   "Refactor login module",
   "25-08-2025",
-  "High"
+  "high"
 );
 allTickets.add(newTicket);
 
@@ -68,7 +61,7 @@ newTicket = new createTicket(
   "Bug",
   "Resolve memory leak",
   "24-08-2025",
-  "Medium"
+  "medium"
 );
 allTickets.add(newTicket);
 

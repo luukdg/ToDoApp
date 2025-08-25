@@ -45,8 +45,7 @@
 #today:hover,
 #week:hover,
 #all-tasks:hover,
-#add-project:hover,
-#add-todo-button:hover {
+#add-project:hover {
   background-color: var(--menu-hover-color);
   cursor: pointer;
 }
@@ -56,4 +55,10 @@
   position: absolute;
   bottom: 20px; /* distance from bottom of container */
   right: 20px; /* distance from right of container */
+  transition: all 0.1s ease-in-out;
+}
+
+#add-todo-button:hover {
+  scale: 1.2;
+  cursor: pointer;
 }

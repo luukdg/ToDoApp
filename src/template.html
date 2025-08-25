@@ -27,7 +27,9 @@
         </div>
         <div class="projects">
           <h3>Projecten</h3>
-          <div id="add-project">Project toevoegen</div>
+          <div id="project-wrapper">
+            <div id="add-project">Project toevoegen</div>
+          </div>
         </div>
         <div id="add-todo-button">+</div>
       </div>
@@ -53,14 +55,18 @@
               <div id="priority">Priority: high</div>
               <div id="date">August 21</div>
               <div class="edit-button">
-                <img src="./img/SVG/edit.svg" alt="edit" />
+                <img id="edit" src="./img/SVG/edit.svg" alt="edit" />
               </div>
               <div class="delete-button">
-                <img src="./img/SVG/trash.svg" alt="delete" />
+                <img id="delete" src="./img/SVG/trash.svg" alt="delete" />
               </div>
             </div>
           </div>
         </template>
+
+        <div id="add-todo-ticket">
+          <h3>Voeg een nieuwe taak toe...</h3>
+        </div>
       </div>
     </div>
 
@@ -84,16 +90,53 @@
               id="description"
             />
           </div>
-          <label for="priority">Task priority:</label>
-          <select name="priority" id="priority">
-            <option value="low" data-priority="low">Low</option>
-            <option value="medium" data-priority="medium">Medium</option>
-            <option value="high" data-priority="high">High</option>
-          </select>
-          <input type="date" name="date" id="date" />
+          <div id="date-priority-wrapper">
+            <input type="date" name="date" id="date" required />
+            <select name="priority" id="priority">
+              <option value="low" data-priority="low">Low</option>
+              <option value="medium" data-priority="medium">Medium</option>
+              <option value="high" data-priority="high">High</option>
+            </select>
+          </div>
           <div>
-            <button id="submit" type="button">Submit</button>
             <button id="cancel" type="button">Cancel</button>
+            <button id="submit" type="button">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form class="edit-window-popup">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div>
+          <h3>Verander je taak</h3>
+          <div>
+            <input
+              type="text"
+              name="title"
+              placeholder="Your task"
+              id="title"
+              required
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="details..."
+              id="description"
+            />
+          </div>
+          <div id="date-priority-wrapper">
+            <input type="date" name="date" id="date" required />
+            <select name="priority" id="priority">
+              <option value="low" data-priority="low">Low</option>
+              <option value="medium" data-priority="medium">Medium</option>
+              <option value="high" data-priority="high">High</option>
+            </select>
+          </div>
+          <div>
+            <button id="cancel" type="button">Cancel</button>
+            <button id="submit" type="button">Change</button>
           </div>
         </div>
       </div>
