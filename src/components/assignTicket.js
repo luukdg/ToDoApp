@@ -1,9 +1,20 @@
 export default class ticketCollection {
   constructor() {
-    this.tickets = []; // Takes no input and creates an array
+    this.tickets = [];
   }
 
   add(ticket) {
-    this.tickets.push(ticket); // Pushes an object into the array
+    // Checks if a matching id is found
+    const index = this.tickets.findIndex(
+      (t) => t.ticketCounter === ticket.ticketCounter
+    );
+
+    if (index !== -1) {
+      // Replace existing ticket
+      this.tickets[index] = ticket;
+    } else {
+      // Otherwise push as new
+      this.tickets.push(ticket);
+    }
   }
 }

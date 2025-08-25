@@ -15,4 +15,8 @@ export default class popUpWindow {
   openEditWindow() {
     this.popUpFormEdit.style.display = "block";
   }
+
+  closeEditWindow() {
+    this.popUpFormEdit.style.display = "none";
+  }
 }
