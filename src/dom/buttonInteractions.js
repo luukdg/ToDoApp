@@ -8,7 +8,7 @@ import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
 
-let currentID = 0;
+let currentID = "";
 
 export default class DomFunctions {
   constructor() {
@@ -212,14 +212,16 @@ export default class DomFunctions {
       const description = data.description;
       const priority = data.priority;
       const date = format(data.date, "dd-MM-yyyy");
+      const status = date.status;
 
       // Creating an object
-      const ticket = new createTicket(
+      const ticket = new changeTicket(
         title,
         description,
         date,
         priority,
-        currentID // HIER VERDER GAAN. HET PROBLEEM IS DAT DE ID NOG NIET MEEGEGEVEN WORDT.
+        currentID,
+        status
       );
 
       // Pushing the object into the general array
@@ -233,9 +235,6 @@ export default class DomFunctions {
       // Closing the popup
       const popup = new popUpWindow();
       popup.closeEditWindow();
-
-      // Removing old form data
-      form.reset();
     });
   }
 
