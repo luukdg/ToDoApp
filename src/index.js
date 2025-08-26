@@ -6,8 +6,6 @@ import "./styles/form-popup.css";
 
 import createTicket from "./components/createTicket.js";
 import ticketCollection from "./components/assignTicket.js";
-import changeTicket from "./components/changeTicket.js";
-import SortArray from "./components/sortArray.js";
 
 import DomFunctions from "./dom/buttonInteractions.js";
 import addTicketToDom from "./dom/addTicketToDom.js";
@@ -19,7 +17,6 @@ const dom = new DomFunctions();
 dom.init();
 
 const domColor = new changeColor();
-domColor.init();
 domColor.checkMenu("All");
 
 // Basic array for storing the tickets

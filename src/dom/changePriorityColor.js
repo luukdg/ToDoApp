@@ -1,14 +1,5 @@
 export default class changeColor {
-  priorityPopUp() {
-    const select = document.getElementById("priority");
-    const colors = { high: "#ef476f", medium: "#ffd166", low: "#06d6a0" };
-
-    select.addEventListener("change", () => {
-      select.style.backgroundColor = colors[select.value];
-      select.style.color = "#fff";
-    });
-  }
-
+  // Change the active status of the menu items
   checkMenu(input) {
     const today = document.getElementById("today");
     const week = document.getElementById("week");
@@ -32,7 +23,6 @@ export default class changeColor {
   }
 
   init() {
-    this.priorityPopUp();
     this.checkMenu();
   }
 }

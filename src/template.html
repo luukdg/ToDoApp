@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- HEADER -->
     <div class="header">
       <div>
         <img id="hamburger" src="./img/SVG/menu1.svg" alt="menu" />
@@ -17,6 +18,7 @@
       </div>
     </div>
 
+    <!-- WRAPPER OF MENU-BAR AND CONTENT -->
     <div class="wrapper">
       <div class="menu-bar">
         <div class="home">
@@ -34,7 +36,7 @@
         <div id="add-todo-button">+</div>
       </div>
       <div class="content">
-        <!-- ToDo Ticket Template -->
+        <!-- TICKET TEMPLATE -->
         <template class="todo-ticket">
           <div class="ticket-wrapper">
             <div class="left-side">
@@ -70,8 +72,8 @@
       </div>
     </div>
 
+    <!-- POPUP WINDOW FOR CREATING A TICKET -->
     <form class="add-book-popup">
-      <!-- Modal content -->
       <div class="modal-content">
         <div>
           <h3>Nieuwe taak</h3>
@@ -100,14 +102,14 @@
           </div>
           <div>
             <button id="cancel" type="button">Cancel</button>
-            <button id="submit" type="button">Submit</button>
+            <button id="submit" type="submit">Submit</button>
           </div>
         </div>
       </div>
     </form>
 
+    <!-- POPUP WINDOW FOR EDITING TICKET -->
     <form class="edit-window-popup">
-      <!-- Modal content for editing -->
       <div class="modal-content">
         <div>
           <h3>Verander je taak</h3>
@@ -136,7 +138,7 @@
           </div>
           <div>
             <button id="cancel-change" type="button">Cancel</button>
-            <button id="change" type="button">Change</button>
+            <button id="change" type="submit">Change</button>
           </div>
         </div>
       </div>

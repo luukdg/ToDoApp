@@ -65,11 +65,11 @@ select {
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   font-weight: bold;
   font-family: var(--font);
-  color: white;
-  background-color: var(--color-mint);
+  /* color: white; */
+  /* background-color: var(--color-mint); */
 }
 
 .modal-content > div > div:first-of-type {

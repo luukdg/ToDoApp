@@ -8,6 +8,7 @@ import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
 
+// This the ID of selected ticket.
 let currentID = "";
 
 export default class DomFunctions {
@@ -76,7 +77,6 @@ export default class DomFunctions {
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      // Check menu selection background color
       const menu = new changeColor();
       menu.checkMenu(filter);
     });
@@ -97,6 +97,7 @@ export default class DomFunctions {
     this.elements.addTodo?.addEventListener("click", () => {
       const popup = new popUpWindow();
       popup.open();
+
       console.log("open");
     });
   }
@@ -106,6 +107,7 @@ export default class DomFunctions {
       if (e.target.closest("#add-new-task-button")) {
         const popup = new popUpWindow();
         popup.open();
+
         console.log("open");
       }
     });
@@ -120,6 +122,14 @@ export default class DomFunctions {
 
       // Query selector of the form
       const form = document.querySelector(".add-book-popup");
+
+      // Check HTML5 validity
+      if (!form.checkValidity()) {
+        // This will show the browser's default validation messages
+        form.reportValidity();
+        return; // stop execution
+      }
+
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
@@ -204,6 +214,14 @@ export default class DomFunctions {
 
       // Query selector of the form
       const form = document.querySelector(".edit-window-popup");
+
+      // Check HTML5 validity
+      if (!form.checkValidity()) {
+        // This will show the browser's default validation messages
+        form.reportValidity();
+        return; // stop execution
+      }
+
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
@@ -266,6 +284,7 @@ export default class DomFunctions {
     });
   }
 
+  // Change completion status of ticket
   changeInCheckbox() {
     this.elements.content?.addEventListener("change", (e) => {
       // Find the right ticket in the DOM
