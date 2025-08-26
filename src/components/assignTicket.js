@@ -17,4 +17,11 @@ export default class ticketCollection {
       this.tickets.push(ticket);
     }
   }
+
+  // Convert plain JSON object back into a ticketCollection instance
+  static fromJSON(json) {
+    const collection = new ticketCollection();
+    collection.tickets = json.tickets || [];
+    return collection;
+  }
 }

@@ -7,6 +7,10 @@ import changeColor from "./changePriorityColor.js";
 import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
+import {
+  retrieveLocalStorage,
+  saveLocalStorage,
+} from "../localStorage/storeTicket.js";
 
 // Defining class variables
 const menu = new changeColor();
@@ -86,7 +90,7 @@ export default class DomFunctions {
 
   defaultProjectButton() {
     this.elements.defaultProject?.addEventListener("click", () => {
-      console.log("Algemeen:");
+      menu.checkMenu("default-project");
     });
   }
 
@@ -155,8 +159,10 @@ export default class DomFunctions {
       allTickets.add(ticket);
       console.log("new ticket added:", allTickets);
 
-      // Add to the dom
+      // Save in localstorage
+      saveLocalStorage(allTickets);
 
+      // Add to the dom
       loopOverTickets.updateDom(userTracker, allTickets);
 
       // Closing the popup
@@ -257,6 +263,9 @@ export default class DomFunctions {
       allTickets.add(ticket);
       console.log("Ticket has been changed:", allTickets);
 
+      // Save in localstorage
+      saveLocalStorage(allTickets);
+
       // Refresh the dom
       loopOverTickets.updateDom(userTracker, allTickets);
 
@@ -283,6 +292,9 @@ export default class DomFunctions {
 
           // Remove from Array
           change.removeTicket(allTickets, objectID);
+
+          // Save in localstorage
+          saveLocalStorage(allTickets);
 
           // Remove from DOM
           toDoTicket.remove();
