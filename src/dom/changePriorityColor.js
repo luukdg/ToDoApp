@@ -1,25 +1,22 @@
+import { constructFrom } from "date-fns";
+
 export default class changeColor {
+  constructor() {
+    this.lastActive = null;
+  }
   // Change the active status of the menu items
   checkMenu(input) {
-    const today = document.getElementById("today");
-    const week = document.getElementById("week");
-    const allTasks = document.getElementById("all-tasks");
+    const inputEl = document.getElementById(input);
 
-    if (input === "All") {
-      today.style.backgroundColor = "";
-      week.style.backgroundColor = "";
-      allTasks.style.backgroundColor = "#d0d0d0";
+    // Clear the previous field
+    if (this.lastActive && this.lastActive !== inputEl) {
+      this.lastActive.value = "";
+      this.lastActive.style.backgroundColor = "";
     }
-    if (input === 7) {
-      today.style.backgroundColor = "";
-      week.style.backgroundColor = "#d0d0d0";
-      allTasks.style.backgroundColor = "";
-    }
-    if (input === 0) {
-      today.style.backgroundColor = "#d0d0d0";
-      week.style.backgroundColor = "";
-      allTasks.style.backgroundColor = "";
-    }
+
+    // Mark the new field as active
+    inputEl.style.backgroundColor = "#d0d0d0";
+    this.lastActive = inputEl;
   }
 
   init() {

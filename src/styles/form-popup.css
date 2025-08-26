@@ -72,6 +72,14 @@ select {
   /* background-color: var(--color-mint); */
 }
 
+#project {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: var(--font);
+}
+
 .modal-content > div > div:first-of-type {
   display: flex;
   flex-direction: column;

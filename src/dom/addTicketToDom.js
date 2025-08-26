@@ -1,7 +1,6 @@
 // Function which loops through the object and updates the DOM accordingly.
 import { startOfDay, addDays, parse } from "date-fns";
 import SortArray from "../components/sortArray.js";
-import changeColor from "./changePriorityColor.js";
 
 export default class addTicketToDom {
   updateDom(filterSelection, allTickets) {

@@ -20,8 +20,7 @@
 
 #today,
 #week,
-#all-tasks,
-#add-project {
+#all-tasks {
   font-size: 1.2rem;
 }
 
@@ -36,7 +35,8 @@
 #all-tasks,
 #add-project,
 .home > h3,
-.projects > h3 {
+.projects > h3,
+#default-project {
   padding: 0px 30px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -45,7 +45,7 @@
 #today:hover,
 #week:hover,
 #all-tasks:hover,
-#add-project:hover {
+#default-project:hover {
   background-color: var(--menu-hover-color);
   cursor: pointer;
 }
@@ -60,5 +60,19 @@
 
 #add-todo-button:hover {
   scale: 1.2;
+  cursor: pointer;
+}
+
+#project-wrapper {
+  font-size: 1.2rem;
+}
+
+#add-project {
+  color: #b0b0b0;
+  transition: all 0.2s ease-in-out;
+}
+
+#add-project:hover {
+  color: #838383;
   cursor: pointer;
 }

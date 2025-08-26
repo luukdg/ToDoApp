@@ -8,8 +8,15 @@ import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
 
+// Defining class variables
+const menu = new changeColor();
+const loopOverTickets = new addTicketToDom();
+const change = new changeTicket();
+const popup = new popUpWindow();
+
 // This the ID of selected ticket.
 let currentID = "";
+let currentStatus = "";
 
 export default class DomFunctions {
   constructor() {
@@ -26,6 +33,7 @@ export default class DomFunctions {
       addProject: document.getElementById("add-project"),
       cancelChange: document.getElementById("cancel-change"),
       change: document.getElementById("change"),
+      defaultProject: document.getElementById("default-project"),
     };
   }
 
@@ -47,12 +55,10 @@ export default class DomFunctions {
     this.elements.today?.addEventListener("click", () => {
       const filter = 0;
 
-      const loopOverTickets = new addTicketToDom();
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      const menu = new changeColor();
-      menu.checkMenu(filter);
+      menu.checkMenu("today");
     });
   }
 
@@ -60,12 +66,10 @@ export default class DomFunctions {
     this.elements.week?.addEventListener("click", () => {
       const filter = 7;
 
-      const loopOverTickets = new addTicketToDom();
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      const menu = new changeColor();
-      menu.checkMenu(filter);
+      menu.checkMenu("week");
     });
   }
 
@@ -73,12 +77,16 @@ export default class DomFunctions {
     this.elements.allTasks?.addEventListener("click", () => {
       const filter = "All";
 
-      const loopOverTickets = new addTicketToDom();
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      const menu = new changeColor();
-      menu.checkMenu(filter);
+      menu.checkMenu("all-tasks");
+    });
+  }
+
+  defaultProjectButton() {
+    this.elements.defaultProject?.addEventListener("click", () => {
+      console.log("Algemeen:");
     });
   }
 
@@ -95,20 +103,14 @@ export default class DomFunctions {
 
   addTodoButton() {
     this.elements.addTodo?.addEventListener("click", () => {
-      const popup = new popUpWindow();
       popup.open();
-
-      console.log("open");
     });
   }
 
   addSecondToDoButton() {
     this.elements.content?.addEventListener("click", (e) => {
       if (e.target.closest("#add-new-task-button")) {
-        const popup = new popUpWindow();
         popup.open();
-
-        console.log("open");
       }
     });
   }
@@ -138,20 +140,26 @@ export default class DomFunctions {
       const description = data.description;
       const priority = data.priority;
       const date = format(data.date, "dd-MM-yyyy");
+      const project = data.project;
 
       // Creating an object
-      const ticket = new createTicket(title, description, date, priority);
+      const ticket = new createTicket(
+        title,
+        description,
+        date,
+        priority,
+        project
+      );
 
       // Pushing the object into the general array
       allTickets.add(ticket);
       console.log("new ticket added:", allTickets);
 
       // Add to the dom
-      const loopOverTickets = new addTicketToDom();
+
       loopOverTickets.updateDom(userTracker, allTickets);
 
       // Closing the popup
-      const popup = new popUpWindow();
       popup.close();
 
       // Removing old form data
@@ -161,7 +169,6 @@ export default class DomFunctions {
 
   closeButton() {
     this.elements.close?.addEventListener("click", () => {
-      const popup = new popUpWindow();
       popup.close();
       console.log("close");
 
@@ -185,12 +192,15 @@ export default class DomFunctions {
           (type) => type.ticketCounter === currentID
         );
 
+        currentStatus = ticket.status;
+
         // Find DOM
         const editWindow = document.querySelector(".edit-window-popup");
         const title = editWindow.querySelector("#title"); // scoped to editWindow
         const description = editWindow.querySelector("#description");
         const date = editWindow.querySelector("#date");
         const priority = editWindow.querySelector("#priority");
+        const project = editWindow.querySelector("#project");
 
         const rawDate = ticket.dueDate;
         const parsedDate = parse(rawDate, "dd-MM-yyyy", new Date());
@@ -200,8 +210,8 @@ export default class DomFunctions {
         description.value = ticket.description;
         date.value = formattedDate;
         priority.value = ticket.priority;
+        project.value = ticket.project;
 
-        const popup = new popUpWindow();
         popup.openEditWindow();
       }
     });
@@ -230,7 +240,7 @@ export default class DomFunctions {
       const description = data.description;
       const priority = data.priority;
       const date = format(data.date, "dd-MM-yyyy");
-      const status = date.status;
+      const project = data.project;
 
       // Creating an object
       const ticket = new changeTicket(
@@ -239,7 +249,8 @@ export default class DomFunctions {
         date,
         priority,
         currentID,
-        status
+        currentStatus,
+        project
       );
 
       // Pushing the object into the general array
@@ -247,11 +258,10 @@ export default class DomFunctions {
       console.log("Ticket has been changed:", allTickets);
 
       // Refresh the dom
-      const loopOverTickets = new addTicketToDom();
       loopOverTickets.updateDom(userTracker, allTickets);
 
       // Closing the popup
-      const popup = new popUpWindow();
+
       popup.closeEditWindow();
     });
   }
@@ -259,7 +269,6 @@ export default class DomFunctions {
   // Cancel editing ticket
   cancelButton() {
     this.elements.cancelChange?.addEventListener("click", () => {
-      const popup = new popUpWindow();
       popup.closeEditWindow();
     });
   }
@@ -273,7 +282,6 @@ export default class DomFunctions {
           const objectID = toDoTicket.id;
 
           // Remove from Array
-          const change = new changeTicket();
           change.removeTicket(allTickets, objectID);
 
           // Remove from DOM
@@ -294,7 +302,6 @@ export default class DomFunctions {
           const objectID = toDoTicket.id;
 
           // Change the status in the object
-          const change = new changeTicket();
           change.changePriority(allTickets, objectID);
 
           if (!toDoTicket.style.textDecoration) {
@@ -322,5 +329,6 @@ export default class DomFunctions {
     this.editButton();
     this.cancelButton();
     this.changeButton();
+    this.defaultProjectButton();
   }
 }

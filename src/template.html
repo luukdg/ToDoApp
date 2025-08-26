@@ -30,6 +30,7 @@
         <div class="projects">
           <h3>Projecten</h3>
           <div id="project-wrapper">
+            <div id="default-project">Algemeen</div>
             <div id="add-project">Project toevoegen</div>
           </div>
         </div>
@@ -101,6 +102,13 @@
             </select>
           </div>
           <div>
+            <select name="project" id="project">
+              <option value="default">Algemeen</option>
+              <option value="huishouden">Huishouden</option>
+              <option value="trouwen">Trouwen</option>
+            </select>
+          </div>
+          <div>
             <button id="cancel" type="button">Cancel</button>
             <button id="submit" type="submit">Submit</button>
           </div>
@@ -136,6 +144,11 @@
               <option value="high" data-priority="high">High</option>
             </select>
           </div>
+          <select name="project" id="project">
+            <option value="default">Algemeen</option>
+            <option value="huishouden">Huishouden</option>
+            <option value="trouwen">Trouwen</option>
+          </select>
           <div>
             <button id="cancel-change" type="button">Cancel</button>
             <button id="change" type="submit">Change</button>
