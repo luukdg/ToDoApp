@@ -31,7 +31,25 @@
           <h3>Projecten</h3>
           <div id="project-wrapper">
             <div id="default-project">Algemeen</div>
+          </div>
+          <div>
             <div id="add-project">Project toevoegen</div>
+            <!-- FORM TO ADD NEW PROJECT -->
+            <form class="add-project-form">
+              <input
+                type="text"
+                id="add-project-input"
+                name="project"
+                placeholder="Voeg een project toe..."
+                required
+              />
+              <div>
+                <button id="cancel-project-button" type="button">
+                  Annuleer
+                </button>
+                <button id="add-project-button" type="submit">Voeg toe</button>
+              </div>
+            </form>
           </div>
         </div>
         <div id="add-todo-button">+</div>
@@ -104,8 +122,6 @@
           <div>
             <select name="project" id="project">
               <option value="default">Algemeen</option>
-              <option value="huishouden">Huishouden</option>
-              <option value="trouwen">Trouwen</option>
             </select>
           </div>
           <div>
@@ -146,8 +162,6 @@
           </div>
           <select name="project" id="project">
             <option value="default">Algemeen</option>
-            <option value="huishouden">Huishouden</option>
-            <option value="trouwen">Trouwen</option>
           </select>
           <div>
             <button id="cancel-change" type="button">Cancel</button>

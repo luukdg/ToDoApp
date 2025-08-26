@@ -35,8 +35,7 @@
 #all-tasks,
 #add-project,
 .home > h3,
-.projects > h3,
-#default-project {
+.projects > h3 {
   padding: 0px 30px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -44,8 +43,7 @@
 
 #today:hover,
 #week:hover,
-#all-tasks:hover,
-#default-project:hover {
+#all-tasks:hover {
   background-color: var(--menu-hover-color);
   cursor: pointer;
 }
@@ -63,16 +61,66 @@
   cursor: pointer;
 }
 
+/* PROJECT SETTINGS */
+
 #project-wrapper {
   font-size: 1.2rem;
 }
 
+#project-wrapper > div {
+  padding: 0px 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: none;
+}
+
+#project-wrapper > div:hover {
+  background-color: var(--menu-hover-color);
+  cursor: pointer;
+}
+
 #add-project {
   color: #b0b0b0;
+  font-size: 1rem;
+  display: block;
   transition: all 0.2s ease-in-out;
 }
 
 #add-project:hover {
-  color: #838383;
+  color: #7d7d7d;
   cursor: pointer;
+}
+
+#add-project-input {
+  border: none;
+  font-size: 1rem;
+  padding: 5px 10px;
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+  height: 30px;
+  width: 100%;
+}
+
+.add-project-form {
+  display: none;
+  /* display: flex; */
+  flex-direction: column;
+  margin: 0px 30px;
+}
+
+.add-project-form.active {
+  display: flex;
+}
+
+.add-project-form > div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#add-project-button,
+#cancel-project-button {
+  background: none;
+  font-size: 0.8rem;
+  width: 100%;
 }

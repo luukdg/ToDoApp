@@ -7,10 +7,7 @@ import changeColor from "./changePriorityColor.js";
 import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
-import {
-  retrieveLocalStorage,
-  saveLocalStorage,
-} from "../localStorage/storeTicket.js";
+import { saveLocalStorage } from "../localStorage/storeTicket.js";
 
 // Defining class variables
 const menu = new changeColor();
@@ -34,10 +31,13 @@ export default class DomFunctions {
       today: document.getElementById("today"),
       week: document.getElementById("week"),
       allTasks: document.getElementById("all-tasks"),
-      addProject: document.getElementById("add-project"),
       cancelChange: document.getElementById("cancel-change"),
       change: document.getElementById("change"),
       defaultProject: document.getElementById("default-project"),
+      addProject: document.getElementById("add-project"),
+      projectForm: document.querySelector(".add-project-form"),
+      cancelProject: document.getElementById("cancel-project-button"),
+      submitProject: document.getElementById("add-project-button"),
     };
   }
 
@@ -88,6 +88,7 @@ export default class DomFunctions {
     });
   }
 
+  // <-- PROJECT BUTTONS -->
   defaultProjectButton() {
     this.elements.defaultProject?.addEventListener("click", () => {
       menu.checkMenu("default-project");
@@ -96,12 +97,70 @@ export default class DomFunctions {
 
   addProjectButton() {
     this.elements.addProject?.addEventListener("click", () => {
-      const newProject = document.createElement("div");
-      const inputForm = document.createElement("input");
+      const addProjectButton = this.elements.addProject;
+      const showProjectForm = this.elements.projectForm;
+      addProjectButton.style.display = "none";
+      showProjectForm.style.display = "block";
+    });
+  }
 
-      const container = document.getElementById("project-wrapper");
-      container.appendChild(newProject);
-      newProject.appendChild(inputForm);
+  cancelProjectButton() {
+    this.elements.cancelProject?.addEventListener("click", () => {
+      const addProjectButton = this.elements.addProject;
+      const showProjectForm = this.elements.projectForm;
+      addProjectButton.style.display = "block";
+      showProjectForm.style.display = "none";
+    });
+  }
+
+  hideProjectForm() {
+    const addProjectButton = this.elements.addProject;
+    const showProjectForm = this.elements.projectForm;
+    addProjectButton.style.display = "block";
+    showProjectForm.style.display = "none";
+  }
+
+  // Submit a project
+  submitProjectButton() {
+    this.elements.submitProject?.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Query selector of the form
+      const form = this.elements.projectForm;
+
+      // Check HTML5 validity
+      if (!form.checkValidity()) {
+        // This will show the browser's default validation messages
+        form.reportValidity();
+        return; // stop execution
+      }
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // Add to <select> dropdown menu
+      const projectList = document.querySelector("#project");
+      const opt = document.createElement("option");
+      opt.value = data.project;
+      opt.innerHTML = data.project;
+      projectList.appendChild(opt);
+
+      // Add to <select> dropdown menu for editing
+      const editWindow = document.querySelector(".edit-window-popup");
+      const editProjectList = editWindow.querySelector("#project");
+      const editOpt = document.createElement("option");
+      editOpt.value = data.project;
+      editOpt.innerHTML = data.project;
+      editProjectList.appendChild(editOpt);
+
+      // Add to menu
+      const newProject = document.querySelector("#project-wrapper");
+      const project = document.createElement("div");
+      project.id = data.project;
+      project.innerHTML = data.project;
+      newProject.appendChild(project);
+
+      this.hideProjectForm();
     });
   }
 
@@ -342,5 +401,7 @@ export default class DomFunctions {
     this.cancelButton();
     this.changeButton();
     this.defaultProjectButton();
+    this.cancelProjectButton();
+    this.submitProjectButton();
   }
 }
