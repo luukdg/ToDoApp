@@ -3,7 +3,7 @@ import ticketCollection from "../components/assignTicket";
 // Save variable
 export function saveLocalStorage(allTickets) {
   localStorage.setItem("allTickets", JSON.stringify(allTickets));
-  console.log("Localstorage saved");
+  console.log("Localstorage ticket saved");
 }
 
 export function retrieveLocalStorage() {

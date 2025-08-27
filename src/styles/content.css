@@ -34,6 +34,11 @@
   transition: all 0.2s ease-in-out;
 }
 
+.right-side > #date {
+  text-align: end;
+  width: 100px;
+}
+
 .delete-button:hover,
 .edit-button:hover {
   scale: 1.1;
