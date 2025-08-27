@@ -8,8 +8,10 @@ import addTicketToDom from "./dom/addTicketToDom.js";
 import { retrieveProjectLocalStorage } from "./localStorage/storeProject.js";
 import { retrieveLocalStorage } from "./localStorage/storeTicket.js";
 import projectFunctions from "./dom/projectButtons.js";
-import { retrieveFilterSelected } from "./localStorage/storeFilterSelected.js";
-import { initFilterSelected } from "./localStorage/storeFilterSelected.js";
+import {
+  currentDateFilter,
+  currentProjectFilter,
+} from "./dom/currentDomSelections.js";
 
 // Activate button interactions
 const dom = new DomFunctions();
@@ -21,16 +23,9 @@ proj.init();
 export const allTickets = retrieveLocalStorage();
 export const allProjects = retrieveProjectLocalStorage();
 
-// Sets a first time filter
-initFilterSelected("All");
-
-// Retrieves the latest filter saved
-const filterSelected = retrieveFilterSelected();
-console.log(filterSelected);
-
 // Refreshes DOM
 const loopOverTickets = new addTicketToDom();
-loopOverTickets.updateDom(filterSelected, allTickets);
+loopOverTickets.updateDom(currentProjectFilter, currentDateFilter, allTickets);
 loopOverTickets.updateMenuDom(allProjects);
 
 console.log(allProjects);

@@ -8,7 +8,11 @@ import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
 import { saveLocalStorage } from "../localStorage/storeTicket.js";
-import { saveFilterSelected } from "../localStorage/storeFilterSelected.js";
+import {
+  currentProjectFilter,
+  saveDate,
+  currentDateFilter,
+} from "./currentDomSelections.js";
 
 // Defining class variables
 const menu = new changeColor();
@@ -58,17 +62,21 @@ export default class DomFunctions {
 
       if (e.target.tagName === "DIV") {
         menu.checkMenu(projectID);
-        saveFilterSelected(projectID);
       }
     });
   }
 
   todayButton() {
     this.elements.today?.addEventListener("click", () => {
-      const filter = 0;
+      // Save the date selection
+      saveDate(0);
 
-      loopOverTickets.updateDom(filter, allTickets);
-      setFilter(filter);
+      loopOverTickets.updateDom(
+        currentProjectFilter,
+        currentDateFilter,
+        allTickets
+      );
+      console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
 
       // menu.checkMenu(this.elements.today.id);
     });
@@ -76,10 +84,15 @@ export default class DomFunctions {
 
   weekButton() {
     this.elements.week?.addEventListener("click", () => {
-      const filter = 6;
+      // Save the date selection
+      saveDate(6);
 
-      loopOverTickets.updateDom(filter, allTickets);
-      setFilter(filter);
+      loopOverTickets.updateDom(
+        currentProjectFilter,
+        currentDateFilter,
+        allTickets
+      );
+      console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
 
       // menu.checkMenu(this.elements.week.id);
     });
@@ -87,10 +100,15 @@ export default class DomFunctions {
 
   allTasksButton() {
     this.elements.allTasks?.addEventListener("click", () => {
-      const filter = "All";
+      // Save the date selection
+      saveDate("All");
 
-      loopOverTickets.updateDom(filter, allTickets);
-      setFilter(filter);
+      loopOverTickets.updateDom(
+        currentProjectFilter,
+        currentDateFilter,
+        allTickets
+      );
+      console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
 
       // menu.checkMenu(this.elements.allTasks.id);
     });
@@ -154,7 +172,11 @@ export default class DomFunctions {
       saveLocalStorage(allTickets);
 
       // Add to the dom
-      loopOverTickets.updateDom(userTracker, allTickets);
+      loopOverTickets.updateDom(
+        currentProjectFilter,
+        currentDateFilter,
+        allTickets
+      );
 
       // Closing the popup
       popup.close();
@@ -258,7 +280,11 @@ export default class DomFunctions {
       saveLocalStorage(allTickets);
 
       // Refresh the dom
-      loopOverTickets.updateDom(userTracker, allTickets);
+      loopOverTickets.updateDom(
+        currentProjectFilter,
+        currentDateFilter,
+        allTickets
+      );
 
       // Closing the popup
 

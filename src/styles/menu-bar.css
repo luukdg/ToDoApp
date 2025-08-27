@@ -72,11 +72,18 @@
   padding-top: 5px;
   padding-bottom: 5px;
   background-color: none;
+  display: flex;
+  justify-content: space-between;
 }
 
 #project-wrapper > div:hover {
   background-color: var(--menu-hover-color);
   cursor: pointer;
+}
+
+.delete-project {
+  display: none;
+  width: 20px;
 }
 
 #add-project {

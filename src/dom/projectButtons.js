@@ -2,12 +2,18 @@ import changeColor from "./changePriorityColor.js";
 import { allProjects, allTickets } from "../index.js";
 import { saveProjectLocalStorage } from "../localStorage/storeProject.js";
 import addTicketToDom from "./addTicketToDom.js";
-import { setFilter } from "./userTracker.js";
-import { saveFilterSelected } from "../localStorage/storeFilterSelected.js";
+import {
+  currentDateFilter,
+  saveProject,
+  currentProjectFilter,
+} from "./currentDomSelections.js";
+import projectCollection from "../components/assignProject.js";
+import { retrieveProjectLocalStorage } from "../localStorage/storeProject.js";
 
 // Defining class variables
 const menu = new changeColor();
 const loopOverTickets = new addTicketToDom();
+const projectFunction = new projectCollection();
 
 export default class projectFunctions {
   constructor() {
@@ -18,6 +24,7 @@ export default class projectFunctions {
       cancelProject: document.getElementById("cancel-project-button"),
       submitProject: document.getElementById("add-project-button"),
       projectWrapper: document.getElementById("project-wrapper"),
+      deleteButton: document.querySelectorAll(".delete-project"),
     };
   }
 
@@ -26,14 +33,18 @@ export default class projectFunctions {
   projectButtons() {
     this.elements.projectWrapper?.addEventListener("click", (e) => {
       const projectID = e.target.id;
-      console.log("projectID: ", projectID);
 
-      loopOverTickets.updateTicketsByProject(projectID, allTickets);
-      setFilter(projectID);
+      // Save the project filter
+      saveProject(projectID);
+
+      // Update DOM
+      loopOverTickets.updateDom(
+        currentProjectFilter,
+        currentDateFilter,
+        allTickets
+      );
 
       menu.checkMenu(projectID);
-
-      saveFilterSelected(projectID);
     });
   }
 
@@ -91,6 +102,22 @@ export default class projectFunctions {
       loopOverTickets.updateMenuDom(allProjects);
 
       this.hideProjectForm();
+      form.reset();
+    });
+  }
+
+  showDeleteButton() {
+    this.elements.projectWrapper?.addEventListener("mouseover", (e) => {
+      const closestDiv = e.target.closest("div");
+      if (closestDiv.id === "default-project") return;
+      const trashCan = closestDiv.querySelector(".delete-project");
+      trashCan.style.display = "block";
+    });
+    this.elements.projectWrapper?.addEventListener("mouseout", (e) => {
+      const closestDiv = e.target.closest("div");
+      if (closestDiv.id === "default-project") return;
+      const trashCan = closestDiv.querySelector(".delete-project");
+      trashCan.style.display = "none";
     });
   }
 
@@ -100,5 +127,6 @@ export default class projectFunctions {
     this.hideProjectForm();
     this.submitProjectButton();
     this.projectButtons();
+    this.showDeleteButton();
   }
 }
