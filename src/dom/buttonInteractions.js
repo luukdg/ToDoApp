@@ -1,7 +1,6 @@
 // <--- Add todo Button ---> //
 import createTicket from "../components/createTicket";
 import { allTickets } from "../index.js";
-import { allProjects } from "../index.js";
 import popUpWindow from "./popUpWindow.js";
 import addTicketToDom from "./addTicketToDom.js";
 import changeColor from "./changePriorityColor.js";
@@ -9,6 +8,7 @@ import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
 import { setFilter, userTracker } from "./userTracker.js";
 import { saveLocalStorage } from "../localStorage/storeTicket.js";
+import { saveFilterSelected } from "../localStorage/storeFilterSelected.js";
 
 // Defining class variables
 const menu = new changeColor();
@@ -34,6 +34,7 @@ export default class DomFunctions {
       allTasks: document.getElementById("all-tasks"),
       cancelChange: document.getElementById("cancel-change"),
       change: document.getElementById("change"),
+      menuBar: document.querySelector(".home"),
     };
   }
 
@@ -51,6 +52,17 @@ export default class DomFunctions {
     });
   }
 
+  highlightButtons() {
+    this.elements.menuBar?.addEventListener("click", (e) => {
+      const projectID = e.target.id;
+
+      if (e.target.tagName === "DIV") {
+        menu.checkMenu(projectID);
+        saveFilterSelected(projectID);
+      }
+    });
+  }
+
   todayButton() {
     this.elements.today?.addEventListener("click", () => {
       const filter = 0;
@@ -58,18 +70,18 @@ export default class DomFunctions {
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      menu.checkMenu(this.elements.today.id);
+      // menu.checkMenu(this.elements.today.id);
     });
   }
 
   weekButton() {
     this.elements.week?.addEventListener("click", () => {
-      const filter = 7;
+      const filter = 6;
 
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      menu.checkMenu(this.elements.week.id);
+      // menu.checkMenu(this.elements.week.id);
     });
   }
 
@@ -80,7 +92,7 @@ export default class DomFunctions {
       loopOverTickets.updateDom(filter, allTickets);
       setFilter(filter);
 
-      menu.checkMenu(this.elements.allTasks.id);
+      // menu.checkMenu(this.elements.allTasks.id);
     });
   }
 
@@ -319,5 +331,6 @@ export default class DomFunctions {
     this.editButton();
     this.cancelButton();
     this.changeButton();
+    this.highlightButtons();
   }
 }

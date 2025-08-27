@@ -20,9 +20,10 @@ export default class addTicketToDom {
 
     let filterByDays;
 
+    // Filters the selection based on time
     if (filterSelection === "All") {
       filterByDays = allTickets.tickets;
-    } else {
+    } else if (Number.isInteger(filterSelection)) {
       const todayDate = startOfDay(new Date());
       const untilDate = startOfDay(addDays(todayDate, filterSelection));
 
@@ -36,6 +37,10 @@ export default class addTicketToDom {
         }
         return ticketDate >= todayDate && ticketDate <= untilDate;
       });
+    } else {
+      filterByDays = allTickets.tickets.filter(
+        (ticket) => ticket.project === filterSelection
+      );
     }
 
     // Sort the tickets by date
@@ -135,17 +140,10 @@ export default class addTicketToDom {
   }
 
   updateTicketsByProject(projectID, allTickets) {
-    let projectList;
-
     if (projectID === "default-project") {
       this.updateDom("All", allTickets);
     } else {
-      projectList = allTickets.tickets.filter(
-        (ticket) => ticket.project === projectID
-      );
-      this.updateDom("All", projectList);
+      this.updateDom(projectID, allTickets);
     }
-
-    console.log("Projectlist:", projectList);
   }
 }

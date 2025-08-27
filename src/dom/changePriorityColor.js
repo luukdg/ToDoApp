@@ -1,14 +1,20 @@
+// Set a starting active item
+import { retrieveFilterID } from "../localStorage/storeFilterSelected";
+const startingId = retrieveFilterID();
+
 export default class changeColor {
   constructor() {
     this.lastActive = null;
+
+    this.checkMenu(startingId);
   }
   // Change the active status of the menu items
   checkMenu(input) {
     const inputEl = document.getElementById(input);
+    if (!inputEl) return;
 
     // Clear the previous field
     if (this.lastActive && this.lastActive !== inputEl) {
-      this.lastActive.value = "";
       this.lastActive.style.backgroundColor = "";
     }
 

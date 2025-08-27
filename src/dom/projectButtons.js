@@ -2,6 +2,8 @@ import changeColor from "./changePriorityColor.js";
 import { allProjects, allTickets } from "../index.js";
 import { saveProjectLocalStorage } from "../localStorage/storeProject.js";
 import addTicketToDom from "./addTicketToDom.js";
+import { setFilter } from "./userTracker.js";
+import { saveFilterSelected } from "../localStorage/storeFilterSelected.js";
 
 // Defining class variables
 const menu = new changeColor();
@@ -20,9 +22,18 @@ export default class projectFunctions {
   }
 
   // <-- PROJECT BUTTONS -->
-  defaultProjectButton() {
-    this.elements.defaultProject?.addEventListener("click", () => {
-      menu.checkMenu(this.elements.defaultProject.id);
+
+  projectButtons() {
+    this.elements.projectWrapper?.addEventListener("click", (e) => {
+      const projectID = e.target.id;
+      console.log("projectID: ", projectID);
+
+      loopOverTickets.updateTicketsByProject(projectID, allTickets);
+      setFilter(projectID);
+
+      menu.checkMenu(projectID);
+
+      saveFilterSelected(projectID);
     });
   }
 
@@ -83,17 +94,7 @@ export default class projectFunctions {
     });
   }
 
-  projectButtons() {
-    this.elements.projectWrapper?.addEventListener("click", (e) => {
-      const projectID = e.target.id;
-      console.log("projectID: ", projectID);
-
-      loopOverTickets.updateTicketsByProject(projectID, allTickets);
-    });
-  }
-
   init() {
-    this.defaultProjectButton();
     this.addProjectButton();
     this.cancelProjectButton();
     this.hideProjectForm();
