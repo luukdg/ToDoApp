@@ -2,12 +2,12 @@
 import { startOfDay, addDays, parse } from "date-fns";
 import SortArray from "../components/sortArray.js";
 import changeColor from "./changePriorityColor.js";
-import { allTickets } from "../index.js";
+import trashIcon from "../img/SVG/trash.svg";
 
 const ticketColor = new changeColor();
 
 export default class addTicketToDom {
-  updateDom(filterSelection, ticketsData) {
+  updateDom(projectSelection, filterSelection, ticketsData) {
     const allTickets = Array.isArray(ticketsData)
       ? { tickets: ticketsData }
       : ticketsData;
@@ -18,16 +18,26 @@ export default class addTicketToDom {
       container.removeChild(container.lastChild);
     }
 
-    let filterByDays;
+    // Filters based on the project
+    let filterByProject;
+
+    if (projectSelection === "default-project") {
+      filterByProject = allTickets.tickets;
+    } else {
+      filterByProject = allTickets.tickets.filter(
+        (ticket) => ticket.project === projectSelection
+      );
+    }
+
+    let filterByDays = filterByProject;
 
     // Filters the selection based on time
     if (filterSelection === "All") {
-      filterByDays = allTickets.tickets;
     } else if (Number.isInteger(filterSelection)) {
       const todayDate = startOfDay(new Date());
       const untilDate = startOfDay(addDays(todayDate, filterSelection));
 
-      filterByDays = allTickets.tickets.filter((ticket) => {
+      filterByDays = filterByDays.filter((ticket) => {
         const ticketDate = startOfDay(
           parse(ticket.dueDate, "dd-MM-yyyy", new Date())
         );
@@ -37,10 +47,6 @@ export default class addTicketToDom {
         }
         return ticketDate >= todayDate && ticketDate <= untilDate;
       });
-    } else {
-      filterByDays = allTickets.tickets.filter(
-        (ticket) => ticket.project === filterSelection
-      );
     }
 
     // Sort the tickets by date
@@ -135,15 +141,12 @@ export default class addTicketToDom {
       const projectDiv = document.createElement("div");
       projectDiv.id = projectName;
       projectDiv.textContent = projectName;
-      projectContainer.appendChild(projectDiv);
-    });
-  }
 
-  updateTicketsByProject(projectID, allTickets) {
-    if (projectID === "default-project") {
-      this.updateDom("All", allTickets);
-    } else {
-      this.updateDom(projectID, allTickets);
-    }
+      const projectDelete = document.createElement("img");
+      projectDelete.className = "delete-project";
+      projectDelete.src = trashIcon;
+      projectContainer.appendChild(projectDiv);
+      projectDiv.appendChild(projectDelete);
+    });
   }
 }

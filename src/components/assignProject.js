@@ -13,4 +13,11 @@ export default class projectCollection {
     collection.projects = json.projects || [];
     return collection;
   }
+
+  remove(allProjects, projectName) {
+    allProjects.splice(
+      allProjects.findIndex((a) => a.project === projectName),
+      1
+    );
+  }
 }
