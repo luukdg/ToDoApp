@@ -121,6 +121,29 @@ export default class projectFunctions {
     });
   }
 
+  deleteButton() {
+    this.elements.projectWrapper?.addEventListener("click", (e) => {
+      // Only run if the click is on the trash can (your <img> element)
+      const closestButton = e.target.closest("img.delete-project");
+      if (!closestButton) return;
+
+      // Get the parent project div
+      const closestDiv = closestButton.closest("div");
+      if (!closestDiv || closestDiv.id === "default-project") return;
+
+      // Remove from allProjects array
+      projectFunction.remove(allProjects, closestDiv.id);
+
+      // Save to localStorage
+      saveProjectLocalStorage(allProjects);
+
+      // Update menu DOM
+      loopOverTickets.updateMenuDom(allProjects);
+
+      console.log("After removal:", allProjects);
+    });
+  }
+
   init() {
     this.addProjectButton();
     this.cancelProjectButton();
@@ -128,5 +151,6 @@ export default class projectFunctions {
     this.submitProjectButton();
     this.projectButtons();
     this.showDeleteButton();
+    this.deleteButton();
   }
 }
