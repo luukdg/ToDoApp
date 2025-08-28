@@ -77,8 +77,6 @@ export default class DomFunctions {
         allTickets
       );
       console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
-
-      // menu.checkMenu(this.elements.today.id);
     });
   }
 
@@ -93,8 +91,6 @@ export default class DomFunctions {
         allTickets
       );
       console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
-
-      // menu.checkMenu(this.elements.week.id);
     });
   }
 
@@ -109,8 +105,6 @@ export default class DomFunctions {
         allTickets
       );
       console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
-
-      // menu.checkMenu(this.elements.allTasks.id);
     });
   }
 
@@ -329,14 +323,22 @@ export default class DomFunctions {
         const toDoTicket = e.target.closest(".ticket-wrapper");
         if (toDoTicket) {
           const objectID = toDoTicket.id;
+          const priorityColor = toDoTicket.querySelector("#priority");
 
           // Change the status in the object
           change.changePriority(allTickets, objectID);
 
           if (!toDoTicket.style.textDecoration) {
-            toDoTicket.style.textDecoration = "line-through";
+            toDoTicket.style.textDecoration = "inherit";
+            toDoTicket.style.backgroundColor = "#A9A9A9";
+            toDoTicket.style.borderLeft = "";
+            priorityColor.style.backgroundColor = "#d5d5d5ff";
           } else {
             toDoTicket.style.textDecoration = "";
+            toDoTicket.style.backgroundColor = "#ffffffff";
+
+            // Change ticket color based on priority (DOM)
+            menu.setPriorityColor(toDoTicket, priorityColor);
           }
         }
       }
