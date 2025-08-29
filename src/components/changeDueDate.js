@@ -1,4 +1,4 @@
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 
 // Current time
 const today = new Date();

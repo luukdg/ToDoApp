@@ -6,7 +6,6 @@ import addTicketToDom from "./addTicketToDom.js";
 import changeColor from "./changePriorityColor.js";
 import changeTicket from "../components/changeTicket.js";
 import { format, parse } from "date-fns";
-import { setFilter, userTracker } from "./userTracker.js";
 import { saveLocalStorage } from "../localStorage/storeTicket.js";
 import {
   currentProjectFilter,
@@ -74,7 +73,7 @@ export default class DomFunctions {
       loopOverTickets.updateDom(
         currentProjectFilter,
         currentDateFilter,
-        allTickets
+        allTickets,
       );
       console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
     });
@@ -88,7 +87,7 @@ export default class DomFunctions {
       loopOverTickets.updateDom(
         currentProjectFilter,
         currentDateFilter,
-        allTickets
+        allTickets,
       );
       console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
     });
@@ -102,7 +101,7 @@ export default class DomFunctions {
       loopOverTickets.updateDom(
         currentProjectFilter,
         currentDateFilter,
-        allTickets
+        allTickets,
       );
       console.log("Project:", currentProjectFilter, "Date:", currentDateFilter);
     });
@@ -155,7 +154,7 @@ export default class DomFunctions {
         description,
         date,
         priority,
-        project
+        project,
       );
 
       // Pushing the object into the general array
@@ -169,7 +168,7 @@ export default class DomFunctions {
       loopOverTickets.updateDom(
         currentProjectFilter,
         currentDateFilter,
-        allTickets
+        allTickets,
       );
 
       // Closing the popup
@@ -202,7 +201,7 @@ export default class DomFunctions {
 
         // Find right ticket
         const ticket = allTickets.tickets.find(
-          (type) => type.ticketCounter === currentID
+          (type) => type.ticketCounter === currentID,
         );
 
         currentStatus = ticket.status;
@@ -263,7 +262,7 @@ export default class DomFunctions {
         priority,
         currentID,
         currentStatus,
-        project
+        project,
       );
 
       // Pushing the object into the general array
@@ -277,7 +276,7 @@ export default class DomFunctions {
       loopOverTickets.updateDom(
         currentProjectFilter,
         currentDateFilter,
-        allTickets
+        allTickets,
       );
 
       // Closing the popup

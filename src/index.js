@@ -5,10 +5,7 @@ import "./styles/content.css";
 import "./styles/form-popup.css";
 import DomFunctions from "./dom/buttonInteractions.js";
 import addTicketToDom from "./dom/addTicketToDom.js";
-import {
-  retrieveProjectLocalStorage,
-  saveProjectLocalStorage,
-} from "./localStorage/storeProject.js";
+import { retrieveProjectLocalStorage } from "./localStorage/storeProject.js";
 import { retrieveLocalStorage } from "./localStorage/storeTicket.js";
 import projectFunctions from "./dom/projectButtons.js";
 import {
@@ -22,7 +19,7 @@ const proj = new projectFunctions();
 dom.init();
 proj.init();
 
-// Basic array for storing the tickets
+// retrieve all tickets and projects from local storage
 export const allTickets = retrieveLocalStorage();
 export const allProjects = retrieveProjectLocalStorage();
 

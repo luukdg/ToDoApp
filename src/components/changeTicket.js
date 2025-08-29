@@ -6,7 +6,7 @@ export default class changeTicket {
     priority,
     ticketCounter,
     status,
-    project
+    project,
   ) {
     this.ticketCounter = ticketCounter;
     this.title = title;
@@ -20,7 +20,7 @@ export default class changeTicket {
   // Changing completion of ticket
   changePriority(allTickets, objectID) {
     const ticket = allTickets.tickets.find(
-      (type) => type.ticketCounter === objectID
+      (type) => type.ticketCounter === objectID,
     );
 
     if (ticket.status === "pending") {
@@ -36,7 +36,7 @@ export default class changeTicket {
   removeTicket(allTickets, objectID) {
     allTickets.tickets.splice(
       allTickets.tickets.findIndex((a) => a.id === objectID),
-      1
+      1,
     );
   }
 }

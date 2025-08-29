@@ -10,7 +10,7 @@ export default class projectCollection {
   remove(allProjects, projectName) {
     allProjects.projects.splice(
       allProjects.projects.findIndex((a) => a.project === projectName),
-      1
+      1,
     );
   }
 

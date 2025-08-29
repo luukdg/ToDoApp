@@ -8,7 +8,6 @@ import {
   currentProjectFilter,
 } from "./currentDomSelections.js";
 import projectCollection from "../components/assignProject.js";
-import { retrieveProjectLocalStorage } from "../localStorage/storeProject.js";
 
 // Defining class variables
 const menu = new changeColor();
@@ -41,7 +40,7 @@ export default class projectFunctions {
       loopOverTickets.updateDom(
         currentProjectFilter,
         currentDateFilter,
-        allTickets
+        allTickets,
       );
 
       menu.checkMenu(projectID);

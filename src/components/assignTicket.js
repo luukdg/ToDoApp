@@ -6,7 +6,7 @@ export default class ticketCollection {
   add(ticket) {
     // Checks if a matching id is found
     const index = this.tickets.findIndex(
-      (t) => t.ticketCounter === ticket.ticketCounter
+      (t) => t.ticketCounter === ticket.ticketCounter,
     );
 
     if (index !== -1) {

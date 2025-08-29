@@ -24,21 +24,20 @@ export default class addTicketToDom {
       filterByProject = allTickets.tickets;
     } else {
       filterByProject = allTickets.tickets.filter(
-        (ticket) => ticket.project === projectSelection
+        (ticket) => ticket.project === projectSelection,
       );
     }
 
     let filterByDays = filterByProject;
 
     // Filters the selection based on time
-    if (filterSelection === "All") {
-    } else if (Number.isInteger(filterSelection)) {
+    if (Number.isInteger(filterSelection)) {
       const todayDate = startOfDay(new Date());
       const untilDate = startOfDay(addDays(todayDate, filterSelection));
 
       filterByDays = filterByDays.filter((ticket) => {
         const ticketDate = startOfDay(
-          parse(ticket.dueDate, "dd-MM-yyyy", new Date())
+          parse(ticket.dueDate, "dd-MM-yyyy", new Date()),
         );
 
         if (filterSelection === 0) {

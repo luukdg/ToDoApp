@@ -26,7 +26,7 @@ export function retrieveFilterSelected() {
 }
 
 export function retrieveFilterID() {
-  const stored = localStorage.getItem("startingID");
+  let stored = localStorage.getItem("startingID");
   if (stored === 0) {
     stored = "today";
   }
