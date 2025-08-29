@@ -44,13 +44,20 @@ export default class DomFunctions {
   // <-- STATIC BUTTONS -->
   hamburgerButton() {
     const hamburger = document.getElementById("hamburger");
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const menu = document.querySelector(".menu-bar");
+
+    if (mobileQuery.matches) {
+      menu.classList.add("hidden"); // hide menu on mobile
+    } else {
+      menu.classList.remove("hidden"); // show menu on desktop
+    }
 
     hamburger.addEventListener("click", () => {
-      const menu = document.querySelector(".menu-bar");
-      if (menu.style.display === "none") {
-        menu.style.display = "block";
+      if (menu.classList.contains("hidden")) {
+        menu.classList.remove("hidden");
       } else {
-        menu.style.display = "none";
+        menu.classList.add("hidden");
       }
     });
   }
