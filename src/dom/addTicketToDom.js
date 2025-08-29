@@ -1,4 +1,3 @@
-// Function which loops through the object and updates the DOM accordingly.
 import { startOfDay, addDays, parse } from "date-fns";
 import SortArray from "../components/sortArray.js";
 import changeColor from "./changePriorityColor.js";
@@ -60,6 +59,7 @@ export default class addTicketToDom {
       const priority = ticket.priority;
       const ticketCounter = ticket.ticketCounter;
       const title = ticket.title;
+      const status = ticket.status;
 
       if (!document.getElementById(ticketCounter)) {
         const container = document.querySelector(".content");
@@ -75,16 +75,28 @@ export default class addTicketToDom {
         // Assign the ticket information to the DOM
         clone.getElementById("description").textContent = description;
         clone.getElementById("date").textContent = dueDate;
+        clone.getElementById("title").textContent = title;
 
         // Make first char with uppercase
         clone.getElementById("priority").textContent =
           priority.charAt(0).toUpperCase() + priority.slice(1);
-        clone.getElementById("title").textContent = title;
 
         const priorityColor = clone.getElementById("priority");
 
         // Change ticket color based on priority
         ticketColor.setPriorityColor(ticketElement, priorityColor);
+
+        // If ticket is complete, change the style
+        if (status === "complete") {
+          ticketElement.style.backgroundColor = "#A9A9A9";
+          ticketElement.style.borderLeft = "";
+          priorityColor.style.backgroundColor = "#d5d5d5ff";
+          clone.getElementById("checkbox").checked = true;
+        } else {
+          ticketElement.style.textDecoration = "";
+          ticketElement.style.backgroundColor = "#ffffffff";
+          clone.getElementById("checkbox").checked = false;
+        }
 
         // Link it to the DOM
         container.appendChild(clone);

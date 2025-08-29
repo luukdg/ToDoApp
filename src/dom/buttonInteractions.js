@@ -324,11 +324,14 @@ export default class DomFunctions {
         if (toDoTicket) {
           const objectID = toDoTicket.id;
           const priorityColor = toDoTicket.querySelector("#priority");
+          const checkbox = toDoTicket.querySelector("#checkbox");
 
           // Change the status in the object
           change.changePriority(allTickets, objectID);
 
-          if (!toDoTicket.style.textDecoration) {
+          saveLocalStorage(allTickets);
+
+          if (checkbox.checked) {
             toDoTicket.style.textDecoration = "inherit";
             toDoTicket.style.backgroundColor = "#A9A9A9";
             toDoTicket.style.borderLeft = "";
