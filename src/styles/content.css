@@ -121,3 +121,24 @@ input[type="checkbox"]:hover {
   border-color: var(--color-ink);
   box-shadow: 0 0 4px var(--color-ink);
 }
+
+@media (max-width: 768px) {
+  .content {
+    margin: 15px;
+  }
+  .right-side > #date {
+    text-align: end;
+    width: auto;
+    font-size: 0.7rem;
+  }
+  .right-side > #priority {
+    display: none;
+  }
+  .right-side {
+    gap: 0.5rem;
+  }
+  .info-wrapper {
+    width: 120px;
+    overflow-wrap: break-word;
+  }
+}

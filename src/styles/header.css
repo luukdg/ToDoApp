@@ -1,5 +1,4 @@
 /* Header styles */
-
 .header {
   display: flex;
   align-items: center;
@@ -47,4 +46,10 @@
 .header > div > h1 {
   font-size: 2.5rem;
   font-weight: 900;
+}
+
+@media (max-width: 768px) {
+  .header > div > p {
+    display: none;
+  }
 }

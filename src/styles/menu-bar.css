@@ -1,17 +1,11 @@
 .menu-bar {
   display: flex;
   flex-direction: column;
-  padding: 30px 0px;
+  padding: 30px 0;
   background-color: var(--menu-bar-color);
   box-shadow: 0 1px 10px -4px gray;
   min-height: calc(100vh - 100px);
   position: relative;
-}
-
-@media (max-width: 768px) {
-  .menu-bar {
-    min-height: 100%;
-  }
 }
 
 .home {
@@ -20,7 +14,9 @@
 
 #today,
 #week,
-#all-tasks {
+#all-tasks,
+#project-wrapper,
+#project-wrapper > div {
   font-size: 1.2rem;
 }
 
@@ -35,15 +31,16 @@
 #all-tasks,
 #add-project,
 .home > h3,
-.projects > h3 {
-  padding: 0px 30px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+.projects > h3,
+#project-wrapper > div {
+  padding: 5px 30px;
 }
 
 #today:hover,
 #week:hover,
-#all-tasks:hover {
+#all-tasks:hover,
+#project-wrapper > div:hover,
+#add-project:hover {
   background-color: var(--menu-hover-color);
   cursor: pointer;
 }
@@ -51,33 +48,13 @@
 #add-todo-button {
   font-size: 2rem;
   position: absolute;
-  bottom: 20px; /* distance from bottom of container */
-  right: 20px; /* distance from right of container */
+  bottom: 20px;
+  right: 20px;
   transition: all 0.1s ease-in-out;
 }
 
 #add-todo-button:hover {
   scale: 1.2;
-  cursor: pointer;
-}
-
-/* PROJECT SETTINGS */
-
-#project-wrapper {
-  font-size: 1.2rem;
-}
-
-#project-wrapper > div {
-  padding: 0px 30px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: none;
-  display: flex;
-  justify-content: space-between;
-}
-
-#project-wrapper > div:hover {
-  background-color: var(--menu-hover-color);
   cursor: pointer;
 }
 
@@ -95,7 +72,6 @@
 
 #add-project:hover {
   color: #7d7d7d;
-  cursor: pointer;
 }
 
 #add-project-input {
@@ -109,9 +85,8 @@
 
 .add-project-form {
   display: none;
-  /* display: flex; */
   flex-direction: column;
-  margin: 0px 30px;
+  margin: 0 30px;
 }
 
 .add-project-form.active {
@@ -130,4 +105,31 @@
   background: none;
   font-size: 0.8rem;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .menu-bar {
+    min-height: 100%;
+    padding: 10px 0;
+  }
+  #today,
+  #week,
+  #all-tasks,
+  #add-project,
+  .home > h3,
+  .projects > h3,
+  #project-wrapper > div {
+    padding: 1px 30px;
+    font-size: 1rem;
+    display: flex;
+  }
+  #project-wrapper > div {
+    justify-content: space-between;
+  }
+  #add-todo-button {
+    display: none;
+  }
+  .home {
+    margin-bottom: 0.5rem;
+  }
 }

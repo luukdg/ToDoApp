@@ -151,7 +151,20 @@ button:active {
   fill: var(--color-sky);
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
+  .modal-content {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    margin: 0px;
+    transform: translateX(-50%);
+    font-family: var(--font);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 400px;
+    width: calc(100% - 20px);
+  }
   .button-59 {
     min-width: 170px;
   }
